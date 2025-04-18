@@ -189,7 +189,7 @@ Assembly And Annotation
 
 The Assembly option by default is turned on. It can be turned off via the toggle button. EDGE performs iterative kmers de novo assembly by `IDBA-UD <http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/>`_ . It performs well on isolates as well as metagenomes but it may not work well on very large genomes. By default, it starts from kmer=31 and iterative step by adding 20 to maximum kmer=121. When the maximum k value is larger than the input average reads length, it will automatically adjust the maximum value to average reads length minus 1. User can set the minimum cutoff value on the final contigs. By default, it will filter out all contigs with size smaller than 200 bp.
 
-.. image:: img/assembly.jpg
+.. image:: img/assembly.png
    :align: center
 
 The Annotation module will be performed only if the assembly option is turned on and reads were successfully assembled. EDGE has the option of using `Prokka <http://www.vicbioinformatics.com/software.prokka.shtml>`_ or `RATT <http://ratt.sourceforge.net/>`_ to do genome annotation. For most cases, Prokka is the appropriate tool to use, however, if your input is a viral genome with attached reference annotation (GenBank file), RATT is the preferred method. If for some reason the assembly fails (ex: run out of Memory), EDGE will bypass any modules requiring a contigs file including the annotation analysis.
