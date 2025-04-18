@@ -209,17 +209,15 @@ Abundance file:
 The contig abundance information can be provided in two ways: user can choose to provide the abundance file or EDGE will use reads mapping the sequencing reads against contigs from assembly workflow and generate the abundance information.
  
 ---if you have the abundance information---
-Please make sure that your abundance information is provided in the following format (\t stands for a tab delimiter):
+Please make sure that your abundance information is provided in the following format (\\t stands for a tab delimiter):
  
-(contig header)\t(abundance)
+(contig header)\\t(abundance)
  
 For example, assume I have three contigs named A0001, A0002, and A0003, then my abundance file will look like
  
-A0001   30.89
-
-A0002   20.02
-
-A0003   78.93
+|A0001   30.89
+|A0002   20.02
+|A0003   78.93
 
 .. image:: img/binning.png
    :align: center
