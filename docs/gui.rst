@@ -215,9 +215,9 @@ Please make sure that your abundance information is provided in the following fo
  
 For example, assume I have three contigs named A0001, A0002, and A0003, then my abundance file will look like
  
-|A0001   30.89
-|A0002   20.02
-|A0003   78.93
+| A0001   30.89
+| A0002   20.02
+| A0003   78.93
 
 .. image:: img/binning.png
    :align: center
