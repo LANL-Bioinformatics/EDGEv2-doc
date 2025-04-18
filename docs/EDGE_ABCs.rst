@@ -57,7 +57,7 @@ For primer analysis, if the user would like to validate known PCR primers in sil
 
 **Qiime2 analysis**
 
-`QIIME2 <http://qiime2.org/>`_ is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. EDGE implementation is based on Qiime 2 core 2019.1 and includes demultiplexing and quality control/filtering, feature table construction, taxonomic assignment, and phylogenetic reconstruction, and diversity analyses and visualizations. Currently, EDGE suports three amplicon types, `16s using GreenGenes database, 16s/18s using SILVA database, and Fungal ITS <https://docs.qiime2.org/2019.1/data-resources/>`_. 
+`QIIME2 <http://qiime2.org/>`_ is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. EDGE implementation is based on Qiime 2 core 2023.5 and includes demultiplexing and quality control/filtering, feature table construction, taxonomic assignment, and phylogenetic reconstruction, and diversity analyses and visualizations. Currently, EDGE suports three amplicon types, `16s using GreenGenes database, 16s/18s using SILVA database, and Fungal ITS <https://docs.qiime2.org/2023.5/data-resources/>`_. 
 
 **DETEQT (TargetedNGS) analysis**
 

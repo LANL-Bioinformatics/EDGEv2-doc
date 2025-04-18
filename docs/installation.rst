@@ -8,17 +8,17 @@ Installation
 EDGE Installation
 =================
 
-.. note:: A base install is ~12GB for the code base and ~500GB for the databases.
+.. note:: A base install is ~12GB for the code base and ~500GB for the databases. It should run as normal user. (not root)
 
 1. Please ensure that your system has the :doc:`essential software building packages <system_requirement>`. installed properly before proceeding following installation.
 
 2. Download the codebase, databases and third party tools.::
 
 	## Codebase is ~207Mb and contains all the scripts and HTML needed to make EDGE run
-	wget -c https://ref-db.edgebioinformatics.org/EDGE/2.x/edge_2.4_main.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_main.tgz
 
-	## Third party tools is ~2.8Gb and contains the underlying programs needed to do the analysis
-	wget -c https://ref-db.edgebioinformatics.org/EDGE/2.x/edge_2.4_thirdParty_softwares.tgz
+	## Third party tools is ~1.5Gb and contains the underlying programs needed to do the analysis
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_thirdParty_softwares.tgz
 
 	## Pipeline database is ~17Gb and contains the other databases needed for EDGE
 	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_pipeline_databases.tgz
@@ -35,9 +35,6 @@ EDGE Installation
 	## GOTTCHA database is ~16Gb and contains the custom databases for the GOTTCHA taxonomic identification pipeline
 	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_GOTTCHA_db.tgz
 		
-	## Amplicon database is ~78Mb and contains the databases for Qiime 16s and 18s ITS pipeline
-	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_amplicons_db.tgz
-	
 	## NT database is ~25Gb and contains the NCBI nt database for contig identification
 	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_nt_20160426.tgz
 	
@@ -47,29 +44,32 @@ EDGE Installation
 	## Diamond database is ~16Gb and contains the databases from RefSeq for protein based taxonomic identification
 	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_diamond_db.tgz
 
-        ## MetaPhlAn2 database is 1.1Gb file contains the databases used for the MetaPhlAn2 taxonomic identification pipeline
-        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_metaphlan2DB.tgz
+	## MetaPhlAn4 database is 14Gb file contains the databases used for the MetaPhlAn4 taxonomic identification pipeline
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_metaphlan4DB.tgz
 
 	## GOTTCHA2 databases is 38Gb file and contains the custom databases for the GOTTCHA2 taxonomic identification pipeline 
 	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_GOTTCHA2_db_20190729.tgz
 
-        ## Kraken2 database is 26Gb file contains the databases used for the Kraken2 taxonomic identification pipeline
-        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_Kraken2_db_20190104.tgz
+	## Kraken2 database is 39Gb file contains the databases used for the Kraken2 taxonomic identification pipeline
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_Kraken2_db_20211216.tgz
 	
-        ## Centrifuge database is 20G file contains the databases used for the Centrifuge taxonomic identification pipeline
-        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_Centrifuge_db_20200329.tgz
+	## Centrifuge database is 20G file contains the databases used for the Centrifuge taxonomic identification pipeline
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_Centrifuge_db_20200329.tgz
 
-        ## PanGIA database is 15G file for PanGIA taxonomic identification pipeline
-        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_PanGIA_db.tgz
+	## PanGIA database is 35G file for PanGIA taxonomic identification pipeline
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_PanGIA_db.tgz
 
-        ## MICCR database is 48GB contains the databases used for the contig taxonomic identification pipeline
-        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_ContigTax_db_20190114.tgz
+	## MICCR database is 48GB contains the databases used for the contig taxonomic identification pipeline
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_ContigTax_db_20190114.tgz
 
-        ## CheckM database is 275MB contains the databases used for the Metagenome Binned contig quality assessment.
-        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_checkM_db_20190213.tgz
+	## CheckM database is 275MB contains the databases used for the Metagenome Binned contig quality assessment.
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_checkM_db_20190213.tgz
 
-        ## Qiime2 database is 1.1GB contians 16s,18s and ITS db.
-        wget -c  https://ref-db.edgebioinformatics.org/EDGE/dev/edge_qiime2_db_20191218.tgz
+	## Qiime2 database is 1.4GB contains 16s,18s and ITS db.
+	wget -c  https://ref-db.edgebioinformatics.org/EDGE/dev/edge_qiime2_db_20230719.tgz
+
+	## AntiSmash database is 3.2GB contains pfam resfam tigrfam can clusterblast db for antismash version 6
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_AntiSmash6.tgz
 
 	(Optional)
 	## Other Host bwa index ~18Gb for host removal, including pig, sheep, cow, monkey, hamster. and goat.
@@ -82,7 +82,7 @@ EDGE Installation
 
 3. Unpack main archive::
 
-	tar -xvzf edge_2.4_main.tgz
+	tar -xvzf edge_dev_main.tgz
 
 .. note:: The main directory, edge_dev, will be created.
 
@@ -92,7 +92,7 @@ EDGE Installation
 
 4. Unpack the third party software into main directory (edge)::
 
-	tar -xvzf edge_2.4_thirdParty_softwares.tgz -C edge/
+	tar -xvzf edge_dev_thirdParty_softwares.tgz -C edge/
 	
 .. note:: You should see a thirdParty directory inside the edge directory.
 
@@ -109,14 +109,15 @@ EDGE Installation
 	tar -xzvf edge_dev_amplicons_db.tgz
 	tar -xzvf edge_dev_nt_20160426.tgz
 	tar -xvzf edge_dev_ShortBRED_Database.tgz
-        tar -xvzf edge_dev_HostIndex.tgz
-        tar -xvzf edge_dev_diamond_db.tgz
-        tar -xvzf edge_dev_metaphlan2DB.tgz
-        tar -xvzf edge_GOTTCHA2_db_20181115.tgz
-        tar -xvzf edge_Kraken2_db_20190104.tgz
-        tar -xvzf edge_ContigTax_db_20190114.tgz
-        tar -xvzf edge_checkM_db_20190213.tgz
-        tar -xvzf edge_qiime2_db_20190227.tgz
+	tar -xvzf edge_dev_HostIndex.tgz
+	tar -xvzf edge_dev_diamond_db.tgz
+	tar -xvzf edge_dev_metaphlan4DB.tgz
+	tar -xvzf edge_GOTTCHA2_db_20190729.tgz
+	tar -xvzf edge_Kraken2_db_20211216.tgz
+	tar -xvzf edge_ContigTax_db_20190114.tgz
+	tar -xvzf edge_checkM_db_20190213.tgz
+	tar -xvzf edge_qiime2_db_20230719.tgz
+	tar -xvzf edge_dev_AntiSmash6.tgz
 
 .. note:: At this point, you should see a database directory and the edge directory.
 
@@ -178,7 +179,7 @@ It will install the following depended :doc:`tools <third_party>`.
   * Taxonomy
 
 	* kraken2
-	* metaphlan2
+	* metaphlan
 	* kronatools
 	* gottcha
 	* gottcha2
@@ -235,8 +236,7 @@ It will install the following depended :doc:`tools <third_party>`.
 
   * Python_Packages
   
-	* Anaconda2
-	* Anaconda3
+	* Mambaforge
 
   * Pipeline_Tools
   
@@ -274,6 +274,7 @@ To take advantage of the user friendly GUI, please follow the section below to c
 Apache Web Server Configuration
 -------------------------------
 
+.. note:: The following system service/tools confiruration will require **sudo** privilege. 
 
 1. Modify/Check sample apache configuration file::
 
@@ -543,8 +544,8 @@ User Management System Installation: Tomcat
 
 	For Ubuntu
 
-	sudo cp mysql-connector-java-5.1.34-bin.jar /usr/share/tomcat7/lib/
-	sudo chmod 744 /usr/share/tomcat7/lib/mysql-connector-java-5.1.34-bin.jar 
+	sudo cp mysql-connector-java-6.0.6-bin.jar /usr/share/tomcat7/lib/
+	sudo chmod 744 /usr/share/tomcat7/lib/mysql-connector-java-6.0.6-bin.jar 
 
 	For CentOS
 

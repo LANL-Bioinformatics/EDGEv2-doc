@@ -14,8 +14,6 @@ NCBI Refseq
 
 EDGE prebuilt blast db and bwa_index of NCBI RefSeq genomes.
 
-.. warning:: NCBI restructure the ftp site. The link for Bacteria below is an archive.
-
 * Bacteria: `NCBI all complete bacteria download method <http://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/#allcomplete>`_
 
   * Version: NCBI 2017 Oct 3
@@ -37,25 +35,22 @@ Krona taxonomy
 Update Krona taxonomy db
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Download these files from `ftp://ftp.ncbi.nih.gov/pub/taxonomy <ftp://ftp.ncbi.nih.gov/pub/taxonomy>`_::
+Go to the folder in the KronaTools installation and run (internet required) ::
 
-    wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_nucl.dmp.gz
-    wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_prot.dmp.gz
-    wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
-    
-Transfer the files to the taxonomy folder in the standalone KronaTools installation and run::
+    cd $EDGE_HOME/thirdParty/KronaTools-2.7/
+    ./updateTaxonomy.sh
+    ./updateAccessions.sh 
 
-    $EDGE_HOME/thirdParty/KronaTools-2.4/updateTaxonomy.sh --local.
+This uses about 16 GB of disk space and an additional 16 GB of scratch space during installation (at the time of this writing; it is always growing) and takes minutes or up to an hour to run.
 
 
-
-Metaphlan2 database
+Metaphlan4 database
 -------------------
 
-MetaPhlAn2 relies on unique clade-specific marker genes identified from ~17,000 reference genomes (~13,500 bacterial and archaeal, ~3,500 viral, and ~110 eukaryotic)
+MetaPhlAn 4 relies on ~5.1M unique clade-specific marker genes identified from ~1M microbial genomes (~236,600 references and 771,500 metagenomic assembled genomes) spanning 26,970 species-level genome bins (SGBs, http://segatalab.cibio.unitn.it/data/Pasolli_et_al.html), 4,992 of them taxonomically unidentified at the species level.
 
-* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413 <http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413>`_
-* website: `http://huttenhower.sph.harvard.edu/metaphlan2 <http://huttenhower.sph.harvard.edu/metaphlan2>`_
+* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=36823356 <http://www.ncbi.nlm.nih.gov/pubmed/?term=36823356>`_
+* website: `http://huttenhower.sph.harvard.edu/metaphlan4 <http://huttenhower.sph.harvard.edu/metaphlan4>`_
 
 Human Genome
 ------------
@@ -67,7 +62,7 @@ The human hs_ref_GRCh38 sequences from NCBI ftp site.
 Kraken2 DB
 -------------
 
-Kraken2 is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. Kraken2 database in EDGE is a pre-built database constructed from Refseq bacteria, archaea, and viral libraries and the GRCh38 human genome and UniVec_Core in RefSeq (as of Dec 20, 2018).
+Kraken2 is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. Kraken2 database in EDGE is a pre-built database constructed from Refseq bacteria, archaea, and viral libraries and the GRCh38 human genome and UniVec_Core in RefSeq (as of Dec, 2021).
 
 * Kraken1 paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807 <http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807>`_
 * website: `http://ccb.jhu.edu/software/kraken2/ <http://ccb.jhu.edu/software/kraken2/>`_
@@ -138,22 +133,22 @@ The Comprehensive Antibiotic Resistance Database
 Amplicon: 16s/18s/ITS
 ---------------------
 
-  For QIIME (Quantitative insights into Microbial Ecology) analysis (scikit-learn=0.21.2)
+  For QIIME (Quantitative insights into Microbial Ecology) analysis (scikit-learn=0.24.1)
 	
   * Greengenes OTUs (16s)
 
     * website: `http://greengenes.secondgenome.com/ <http://greengenes.secondgenome.com/>`_
-    * version: 13_8
+    * version: 2022_10
 	
   * SILVA OTUs (16S/18S)
 
     * website: `http://www.arb-silva.de/download/archive/qiime/ <http://www.arb-silva.de/download/archive/qiime/>`_
-    * version: 132
+    * version: 138
     
-  * UNITE OTUs (ITS)
+  * UNITE OTUs (Fungal ITS)
   
     * website: `https://unite.ut.ee/repository.php <https://unite.ut.ee/repository.php>`_
-    * version: 18.11.2018
+    * version: 16.10.2022
     
 .. _build-host-index:
 

@@ -15,16 +15,16 @@ Assembly
 
 * SPAdes
 
-  * Citation: Nurk, Bankevich et al. (2013) `Assembling single-cell genomes and mini-metagenomes from chimeric MDA products. J Comput Biol. 2013 Oct;20(10):714-37 <https://www.ncbi.nlm.nih.gov/pubmed/24093227>`_
-  * Site: `http://bioinf.spbau.ru/spades <http://bioinf.spbau.ru/spades>`_
-  * Version: 3.13.0
+  * Citation: Prjibelski et al. (2020) `Using SPAdes De Novo Assembler. Curr Protoc Bioinformatics. 2020;70(1):e102.  <https://currentprotocols.onlinelibrary.wiley.com/doi/full/10.1002/cpbi.102>`_
+  * Site: `https://github.com/ablab/spades <https://github.com/ablab/spades>`_
+  * Version: 3.15.5
   * License: GPLv2
 
 * MEGAHIT
 
   * Citation: Li D. et al. (2015) `MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics. 2015 May 15;31(10):1674-6 <http://www.ncbi.nlm.nih.gov/pubmed/25609793>`_
   * Site: `https://github.com/voutcn/megahit <https://github.com/voutcn/megahit>`_
-  * Version: 1.1.3
+  * Version: 1.2.9
   * License: GPLv3
   
 * LRASM: Long Read Assembler
@@ -45,7 +45,7 @@ Assembly
 
   * Citation: Wick RR et al.(2017) `Unicycler: Resolving bacterial genome assemblies from short and long sequencing reads. PLoS Comput Biol. 2017 Jun 8;13(6):e1005595. <http://www.ncbi.nlm.nih.gov/pubmed/28594827>`_
   * Site: `https://github.com/rrwick/Unicycler <https://github.com/rrwick/Unicycler>`_
-  * Version: 0.4.8
+  * Version: 0.5.0
   * License: GPLv3
 
 Annotation
@@ -127,16 +127,16 @@ Annotation
 
   * Citation:
   * Site: `http://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/ <http://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/>`_
-  * Version: 25.7 (2019 Feb 26)
+  * Version: 25.8 (2022 Jun 13)
   * License: Public Domain
 
 .. warning:: tbl2asn must be compiled within the past year to function.  We attempt to recompile every 6 months or so.  Most recent compilation is 27 Feb 2018
 
 * AntiSmash
 
-  * Citation: Kai Blin et al. (2017) `antiSMASH 4.0 — improvements in chemistry prediction and gene cluster boundary identification, Nucleic Acids Research Volume 45, Issue W1, 3 July 2017, Pages W36–W41 <https://academic.oup.com/nar/article/45/W1/W36/3778252>`_
+  * Citation: Kai Blin et al. (2021) `antiSMASH 6.0: improving cluster detection and comparison capabilities, Nucleic Acids Research, Volume 49, Issue W1, 2 July 2021, Pages W29–W35 <https://doi.org/10.1093/nar/gkab335>`_
   * Site: `https://antismash.secondarymetabolites.org/#!/start <https://antismash.secondarymetabolites.org/#!/start>`_
-  * Version: 4.2
+  * Version: 6.1.1
   * License: AGPL-3.0  
 
 Alignment
@@ -160,7 +160,7 @@ Alignment
 
   * Citation: Langmead, B. and Salzberg, S.L. (2012) `Fast gapped-read alignment with Bowtie 2, Nature methods, 9, 357-359. <http://www.ncbi.nlm.nih.gov/pubmed/22388286>`_
   * Site: `http://bowtie-bio.sourceforge.net/bowtie2/index.shtml <http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>`_
-  * Version: 2.4.1
+  * Version: 2.5.1
   * License: GPLv3
 
 * BWA
@@ -188,7 +188,7 @@ Alignment
 
   * Citation: Li, H. (2018) `Minimap2: fast pairwise alignment for nucleotide sequences. Bioinformatics, 34:3094-3100. <https://doi.org/10.1093/bioinformatics/bty191>`_
   * Site: `https://github.com/lh3/minimap2 <https://github.com/lh3/minimap2>`_
-  * Version: 2.16
+  * Version: 2.24
   * License: MIT
 
 * diamond
@@ -210,10 +210,10 @@ Taxonomy Classification
   
 * Metaphlan
 
-  * Citation: Segata, N., et al. (2012) `Metagenomic microbial community profiling using unique clade-specific marker genes, Nature methods, 9, 811-814. <http://www.ncbi.nlm.nih.gov/pubmed/22688413>`_
-  * Site: `http://huttenhower.sph.harvard.edu/metaphlan2 <http://huttenhower.sph.harvard.edu/metaphlan2>`_
-  * Version: 2.7.7
-  * License: Artistic License
+  * Citation: Blanco-Míguez A., et al. (2023) `Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4. Nat Biotechnol. 2023 Feb 23.  <http://www.ncbi.nlm.nih.gov/pubmed/36823356>`_
+  * Site: `http://huttenhower.sph.harvard.edu/metaphlan4 <http://huttenhower.sph.harvard.edu/metaphlan4>`_
+  * Version: 4.0.6
+  * License: MIT License
   
 * GOTTCHA
 
@@ -274,7 +274,7 @@ Specialty Genes
 
   * Citation: McArthur & Wright. (2015) `Bioinformatics of antimicrobial resistance in the age of molecular epidemiology. Current Opinion in Microbiology, 27, 45-50. <http://www.sciencedirect.com/science/article/pii/S1369527415000958?via%3Dihub>`_
   * Site: `https://card.mcmaster.ca/analyze/rgi <https://card.mcmaster.ca/analyze/rgi>`_
-  * Version: 5.1.0
+  * Version: 5.2.1
   * License:  Apache Software License
 
 Metagenome
@@ -291,7 +291,7 @@ Metagenome
 
   * Citation: Parks DH, et al. (2015) `CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes. Genome Research, 25: 1043–1055. <http://genome.cshlp.org/content/25/7/1043.short>`_ 
   * Site: `https://ecogenomics.github.io/CheckM/ <https://ecogenomics.github.io/CheckM/>`_
-  * Version: 1.1.1
+  * Version: 1.2.2
   * License: GPLv3
 
 Visualization and Graphic User Interface
@@ -315,7 +315,7 @@ Visualization and Graphic User Interface
 
   * Citation: Ondov, B.D., Bergman, N.H. and Phillippy, A.M. (2011) `Interactive metagenomic visualization in a Web browser, BMC bioinformatics, 12, 385. <http://www.ncbi.nlm.nih.gov/pubmed/21961884>`_
   * Site: `http://sourceforge.net/projects/krona/ <http://sourceforge.net/projects/krona/>`_
-  * Version: 2.7
+  * Version: 2.8.1
   * License: BSD
 
 * JQuery
@@ -383,9 +383,10 @@ Utility
 =======
 
 * Chromium
+
   * Citation:
   * Site: `https://www.chromium.org <https://www.chromium.org>`_
-  * Version: 75.0.3767.0 
+  * Version: 95.0.4615.0 
   * License: Google-authored portion is released under the BSD license. 
 
 * BEDTools
@@ -479,7 +480,7 @@ Utility
 
   * Citation: Li, H., et al. (2009) `The Sequence Alignment/Map format and SAMtools, Bioinformatics, 25, 2078-2079. <http://www.ncbi.nlm.nih.gov/pubmed/19505943>`_
   * Site: `http://www.htslib.org/ <http://www.htslib.org/>`_
-  * Version: 1.10
+  * Version: 1.16.1
   * License: MIT
 
 .. _FaQCs-ref:
@@ -502,14 +503,14 @@ Utility
   
   * Citation: De Coster W, et al.(2018) `NanoPack: visualizing and processing long read sequencing data, Bioinformatics. 2018 Mar 14. <https://www.ncbi.nlm.nih.gov/pubmed/29547981>`_
   * Site: `https://github.com/wdecoster/NanoPlot <https://github.com/wdecoster/NanoPlot>`_
-  * Version: 1.13.0
+  * Version: 1.40.0
   * License: GPLv3
 
 * Porechop
 
   * Citation:
   * Site: `https://github.com/rrwick/Porechop <https://github.com/rrwick/Porechop>`_
-  * Version: 0.2.3
+  * Version: 0.2.4
   * License: GPLv3
   
 
@@ -525,7 +526,7 @@ Utility
 
   * Citation: 
   * Site: `https://github.com/ncbi/sra-tools <https://github.com/ncbi/sra-tools>`_
-  * Version: 2.9.6
+  * Version: 3.0.0
   * License: Public Domain
 
 * ea-utils
@@ -535,36 +536,13 @@ Utility
   * Version: 1.1.2-537
   * License: MIT License
   
-* Anaconda2 (Python 2)
+* Mambaforge (Python 3)
 
   * Citation: 
-  * Site: `https://anaconda.org <https://anaconda.org>`_
-  * Version: 2019.10
+  * Site: `https://github.com/conda-forge/miniforge <https://github.com/conda-forge/miniforge>`_
+  * Version: 22.11.1-4
   * License: 3-clause BSD 
 
-* Anaconda2Packages
-
-  * Custom built directory containing all the required python2 packages for offline installation.
-  * This was generated primarially using the command.::
-  
-	pip download packageName
-
-  * Some packages were manually downloaded into the directory to install via conda
-  * Dependencies were manually downladed as they were discovered
-  
-* Anaconda3 (Python 3)
-
-  * Citation: 
-  * Site: `https://anaconda.org <https://anaconda.org>`_
-  * Version: 2020.02
-  * License: 3-clause BSD 
-
-* Anaconda3Packages
-
-  * Custom built directory containing all the required python3 packages for offline installation.
-  * This was generated primarially using the command.::
-
-	pip download packageName
 
 Amplicon Analysis
 =================
@@ -573,7 +551,7 @@ Amplicon Analysis
 
   * Citation: Caporaso et al. (2010) `QIIME allows analysis of high-throughput community sequencing data. Nat Methods. 2010 May;7(5):335-6 <http://www.ncbi.nlm.nih.gov/pubmed/20383131>`_ 
   * Site: `http://qiime2.org/ <http://qiime2.org/>`_
-  * Version: 2019.10
+  * Version: 2023.5
   * License: BSD 3-Clause
   
 * DETEQT: Diagnostic targeted sequencing adjudication 

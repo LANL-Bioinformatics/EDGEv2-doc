@@ -35,10 +35,10 @@ Ubuntu 18.04
         bioperl rsync libbz2-dev liblzma-dev time libterm-readkey-perl \
         liblwp-protocol-https-perl gnuplot libjson-xs-perl libio-socket-ip-perl \
         vim php sendmail mysql-client mysql-server libgfortran3  texinfo \
-        openssh-server openssh-client zlib1g-dev openjdk-11-jdk texlive \
+        openssh-server openssh-client openjdk-11-jdk texlive git gawk \
         texlive-fonts-extra libboost-all-dev cron less libxml2-dev \
         libcgi-pm-perl libxml-simple-perl libxml-dom-perl locales \
-        libspreadsheet-parseexcel-perl libspreadsheet-writeexcel-perl
+        libspreadsheet-parseexcel-perl libspreadsheet-writeexcel-perl ghostscript 
     
 2. Install Apache2 for EDGE UI::
     
@@ -50,10 +50,10 @@ Ubuntu 18.04
     sudo apt-get install sendmail mysql-client mysql-server
     
     cd /usr/share
-    wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.92/bin/apache-tomcat-7.0.92.tar.gz
-    tar xzf apache-tomcat-7.0.92.tar.gz
-    rm apache-tomcat-7.0.92.tar.gz
-    mv apache-tomcat-7.0.92 tomcat7
+    wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.109/bin/apache-tomcat-7.0.109.tar.gz
+    tar xzf apache-tomcat-7.0.109.tar.gz
+    rm apache-tomcat-7.0.109.tar.gz
+    mv apache-tomcat-7.0.109 tomcat7
     echo "export CATALINA_HOME=\"/usr/share/tomcat7\"" >> /etc/profile
 
 4. Change the image conversion policy::
