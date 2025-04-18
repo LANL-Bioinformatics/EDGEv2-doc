@@ -5,8 +5,8 @@ Documentation for the EDGE bioinformatics project, a DTRA-funded NGS analysis ef
 
 * [Read The Docs](http://edge.readthedocs.org/)
 
-* [PDF](https://readthedocs.org/projects/edge/downloads/pdf/v1.5/)
+* [PDF](https://readthedocs.org/projects/edge/downloads/pdf/develop/)
 
-* [ebook](https://readthedocs.org/projects/edge/downloads/epub/v1.5/)
+* [ebook](https://readthedocs.org/projects/edge/downloads/epub/develop/)
 
-![ebook](https://bytebucket.org/nmrcjoe/edge-docs/raw/ebc26d88f1c4d6b11e96e2d1c3553873a4dd7cab/ebook.png)
+![ebook](https://bytebucket.org/nmrcjoe/edge-docs/raw/eb16a4b0eaeedd2f2dc65961d6cf2b1aafd4ebc8/ebook.png)

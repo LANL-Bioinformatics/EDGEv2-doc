@@ -3,6 +3,12 @@ Databases
 
 EDGE provided databases
 =======================
+
+Taxnomomy Database Info Table
+-----------------------------
+
+https://lanl-bioinformatics.github.io/EDGE/docs/taxonomyDBtable.html
+
 NCBI Refseq
 -----------
 
@@ -10,15 +16,15 @@ EDGE prebuilt blast db and bwa_index of NCBI RefSeq genomes.
 
 .. warning:: NCBI restructure the ftp site. The link for Bacteria below is an archive.
 
-* Bacteria: `ftp://ftp.ncbi.nih.gov/genomes/archive/old_refseq/Bacteria/all.fna.tar.gz <ftp://ftp.ncbi.nih.gov/genomes/archive/old_refseq/Bacteria/all.fna.tar.gz>`_
+* Bacteria: `NCBI all complete bacteria download method <http://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/#allcomplete>`_
 
-  * Version: NCBI 2015 Aug 11
-  * 2786 genomes
+  * Version: NCBI 2017 Oct 3
+  * 245 Archaea + 7917 Bacteria genomes
   
-* Virus:  `NCBI Virus <http://www.ncbi.nlm.nih.gov/nuccore/?term=Viruses%5BOrganism%5D+NOT+cellular+organisms%5BORGN%5D+NOT+wgs%5BPROP%5D+NOT+AC_000001%3AAC_999999%5Bpacc%5D+NOT+gbdiv+syn%5Bprop%5D+AND+(srcdb_refseq%5BPROP%5D+OR+nuccore+genome+samespecies%5BFilter%5D)+NOT+%22complete+cds%22>`_
+* Virus:  `NCBI Virus <https://www.ncbi.nlm.nih.gov/nuccore/?term=Viruses[Organism]%20NOT%20cellular%20organisms[ORGN]%20NOT%20wgs[PROP]%20NOT%20gbdiv%20syn[prop]%20AND%20(srcdb_refseq[PROP]%20OR%20nuccore%20genome%20samespecies[Filter])>`_
 
-  * Version: NCBI 2015 Aug 11
-  * 4834 RefSeq + Neighbor Nucleotoides (51300 seuqences)
+  * Version: NCBI 2017 Oct 3
+  * 7458 complete genomes + Neighbor Nucleotoides (118039 seuqences)
 
 see $EDGE_HOME/database/bwa_index/id_mapping.txt for all gi/accession to genome name lookup table.
 
@@ -43,13 +49,13 @@ Transfer the files to the taxonomy folder in the standalone KronaTools installat
 
 
 
-Metaphlan database
-------------------
+Metaphlan2 database
+-------------------
 
-MetaPhlAn relies on unique clade-specific marker genes identified from 3,000 reference genomes.
+MetaPhlAn2 relies on unique clade-specific marker genes identified from ~17,000 reference genomes (~13,500 bacterial and archaeal, ~3,500 viral, and ~110 eukaryotic)
 
 * paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413 <http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413>`_
-* website: `http://huttenhower.sph.harvard.edu/metaphlan <http://huttenhower.sph.harvard.edu/metaphlan>`_
+* website: `http://huttenhower.sph.harvard.edu/metaphlan2 <http://huttenhower.sph.harvard.edu/metaphlan2>`_
 
 Human Genome
 ------------
@@ -61,10 +67,13 @@ The human hs_ref_GRCh38 sequences from NCBI ftp site.
 MiniKraken DB
 -------------
 
-Kraken is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. MiniKraken is a pre-built 4 GB database constructed from complete bacterial, archaeal, and viral genomes in RefSeq (as of Mar. 30, 2014).
+Kraken is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. MiniKraken is default in EDGE and is a pre-built 8 GB database constructed from complete bacterial, archaeal, and viral genomes in RefSeq (as of Oct. 12, 2017).
 
 * paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807 <http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807>`_
 * website: `http://ccb.jhu.edu/software/kraken/ <http://ccb.jhu.edu/software/kraken/>`_
+
+Full Kraken database is available on `LANL FTP <https://edge-dl.lanl.gov/EDGE/full_kraken_db/>`_
+User can use it as custom kraken db. The database is large (155G after unzip) and using it requires ~150 GB memory too.
 
 GOTTCHA DB
 ----------
@@ -101,8 +110,9 @@ VFDB
 
 A Microbial database of virulence factors
 
-* paper: 
-* website: 
+* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=26578559 <http://www.ncbi.nlm.nih.gov/pubmed/?term=26578559>`_
+* website: `http://www.mgc.ac.cn/VFs/main.htm <http://www.mgc.ac.cn/VFs/main.htm>`_
+* version: 20160818
 
 
 ARDB

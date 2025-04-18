@@ -9,9 +9,9 @@ Graphic User Interface (GUI)
 ############################
 
 
-The User Interface was mainly implemented in `JQuery Mobile <http://jquerymobile.com>`_, CSS, javascript and perl CGI. It is a HTML5-based user interface system designed to make responsive web sites and apps that are accessible on all smartphone, tablet and desktop devices.
+The User Interface was mainly implemented in `JQuery Mobile <http://jquerymobile.com>`_, CSS, javascript and perl CGI. It is a HTML5-based user interface system designed to make responsive web sites and apps that are accessible on all smartphone, tablet and desktop devices. (see :ref:`How to make an app icon on the mobile device<app_icon_fandq>`)
 
-See  `GUI page <https://bioedge.lanl.gov/edge_ui/>`_
+See  `GUI page <http://edgebioinformatics.org>`_
 
 
 User Login
@@ -26,8 +26,6 @@ Click on the upper-right user icon will pop up an user login window.
 
 Upload Files
 ============
-
-For LANL security policy, the function is not implemented at https://bioedge.lanl.gov/edge_ui/.
 
 EDGE supports input from NCBI Sequence Reads Archive (SRA) and select files from the EDGE server. To analyze users' own data, EDGE allows user to upload fastq, fasta and genbank (which can be in gzip format) and text (txt). Max file size is '5gb' and files will be kept for 7 days.
 Choose “Upload files” from the navigation bar on the left side of the screen.  Add users files by clicking "Add Files" buttion or drag files to the upload feature window. Then, click "Start Upload" button to upload files to EDGE server.
@@ -77,7 +75,7 @@ Control1  AGCCATCGTCTA    Control    Negative
 Control2  CGTCTAACCATG    Control    Spike-in Control
 ========= =============== ========== ================
 
-When the reads type is "De-multiplexed Reads Directory ", the mapping file needs a 'Files' column with filenames for each sampleID.
+When the reads type is "De-multiplexed Reads Directory ", the mapping file needs a 'Files' column with **FASTQ** filenames for each sampleID. It can be paired-end or single-end FASTQ file and paired-end FASTQ files are comma-separated.
 
 ========= ======================= ========== ================
 #SampleID Files                   SampleType Description
@@ -88,12 +86,52 @@ Control1  C1.R1.fastq,C1.R2.fastq Control    Negative
 Control2  C2.R1.fastq,C2.R2.fastq Control    Spike-in Control
 ========= ======================= ========== ================
 
+Run DETEQT
+----------
+
+Click "Run DETEQT" will cause a section to appear for DETEQT input and parameters. The DETEQT is a pipeline for diagnostic targeted sequencing adjudication. You may find more information from `here <https://chienchilo.bitbucket.io/targetedNGS/>`_. The DETEQT pipeline required user to select a directory, a metadata mapping file and a targeted amplicon references. The metadata mapping file is a tab-delimited file or excel file which header or first row includes #SampleID and Files. In the Files column, the paired-end fastq files are separated by a comma(,) and all the fastq files should be located in the input directory. The reference is comprised of only target regions in FASTA format in the assay.
+
+.. image:: img/detect_input.png
+   :align: center
+
+Metadata Mapping File example:
  
-Output path
------------
+========= =======================
+#SampleID      Files
+========= =======================
+Dengue    sample.1.fq,sample.2.fq
+Flu       flu.1.fq,flu.2.fq 
+Ebola     ebola.1.fq,ebola.2.fq
+MERS      mers.1.fq,mers.2.fq
+SARS      sars.1.fq,sars.2.fq
+Zika      zika.1.fq,zika.2.fq
+Rota      rota.1.fq,rota.2.fq
+HIV       hiv.1.fq,hiv.2.fq
+Hanta     hanta.1.fq,hanta.2.fq
+HCV       hcv.1.fq,hcv.2.fq
+========= =======================
 
-You may specify the output path if you would like your results to be output to a specific location. In most cases, you can leave this field blank and the results will be automatically written to a standard location, $EDGE_HOME/edge_ui/EDGE_output. In most cases, it is sufficient to leave these options to the default settings.
+Run PiReT
+---------
 
+Click "Run PiReT" will cause a section to appear for PiReT input and parameters. The PiReT is a pipeline for Reference based Transcriptomics analysis. You may find more information from `PiReT github <https://github.com/mshakya/PyPiReT>`_. The PiReT pipeline required user to select a directory, a experimental design file and references FASTA and `GFF <http://gmod.org/wiki/GFF3>`_ files in the parameters section. The experimental file is a tab-delimited file or excel file which header or first row includes #SampleID, Files, and Group. In the Files column, the paired-end fastq files are separated by a colon(:) and all the fastq files should be located in the input directory. The feature ID in the reference GFF files should be uniqe within the scope of the GFF file.
+
+.. image:: img/piret_input.png
+   :align: center
+
+Experimental Design File example:
+ 
+========= ============================= ========
+#SampleID Files                         Group
+========= ============================= ========
+samp1	  samp1_R1.fastq:samp1_R2.fastq	liver
+samp2	  samp2_R1.fastq:samp2_R2.fastq	spleen
+samp3	  samp3_R1.fastq:samp3_R2.fastq	spleen
+samp4	  samp4_R1.fastq:samp4_R2.fastq	liver
+samp5	  samp5_R1.fastq:samp5_R2.fastq	liver
+samp6	  samp6_R1.fastq:samp6_R2.fastq	spleen
+========= ============================= ========
+ 
 Number of CPUs
 --------------
 
@@ -143,7 +181,7 @@ The Similarity (%) can be varied if desired, but the default is 90 and we would 
 Assembly And Annotation
 -----------------------
 
-The Assembly option by default is turned on. It can be turned off via the toggle button. EDGE performs iterative kmers de novo assembly by `IDBA-UD <http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/>`_ . It performs well on isolates as well as metagenomes but it may not work well on very large genomes. By default, it starts from kmer=31 and iterative step by adding 20 to maximum kmer=124. When the maximum k value is larger than the input average reads length, it will automatically adjust the maximum value to average reads length minus 1. User can set the minimum cutoff value on the final contigs. By default, it will filter out all contigs with size smaller than 200 bp.
+The Assembly option by default is turned on. It can be turned off via the toggle button. EDGE performs iterative kmers de novo assembly by `IDBA-UD <http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/>`_ . It performs well on isolates as well as metagenomes but it may not work well on very large genomes. By default, it starts from kmer=31 and iterative step by adding 20 to maximum kmer=121. When the maximum k value is larger than the input average reads length, it will automatically adjust the maximum value to average reads length minus 1. User can set the minimum cutoff value on the final contigs. By default, it will filter out all contigs with size smaller than 200 bp.
 
 .. image:: img/assembly.jpg
    :align: center
@@ -298,8 +336,8 @@ The available actions are:
 
 * **Share Project**
   Allow guests and other users to view the project.
- 
-  
+   
+   
 * **Make project Private/Public**
   Restrict access to viewing the project to only yourself. Or open it everyone.
 

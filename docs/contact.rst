@@ -13,7 +13,6 @@ Chien-Chi Lo	 chienchi@lanl.gov
 Paul Li		     po-e@lanl.gov
 Karen Davenport  kwdavenport@lanl.gov
 Logan Voegtly    logan.j.voegtly.ctr@mail.mil
-Joe Anderson	 joe@getedge.org
 Kim Bishop-Lilly kimberly.a.bishop-lilly.ctr@mail.mil
 ================ ====================================
 

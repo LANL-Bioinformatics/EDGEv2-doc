@@ -11,7 +11,7 @@ EDGE: **E**\mpowering the **D**\evelopment of **G**\enomics **E**\xpertise
    :numbered:
    :maxdepth: 2
    
-   EDGE_introduction
+   EDGE_ABCs
    introduction
    system_requirement
    installation
@@ -23,3 +23,4 @@ EDGE: **E**\mpowering the **D**\evelopment of **G**\enomics **E**\xpertise
    troubleshooting
    copyright
    contact
+
