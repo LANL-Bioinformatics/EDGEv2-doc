@@ -1,7 +1,9 @@
+.. warning:: This is for development version of EDGE.  Stable version (v2.3) is `here. <https://edge.readthedocs.io/en/v2.3/installation.html>`_
+
 Installation
 ############
 
-.. note:: These instructions assumes Ubuntu 14 and CentOS 7
+.. note:: These instructions assumes Ubuntu 18 and CentOS 7
 
 EDGE Installation
 =================
@@ -13,57 +15,74 @@ EDGE Installation
 2. Download the codebase, databases and third party tools.::
 
 	## Codebase is ~207Mb and contains all the scripts and HTML needed to make EDGE run
-	wget -c https://edge-dl.lanl.gov/EDGE/2.x/edge_2.3_main.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/2.x/edge_2.4_main.tgz
 
 	## Third party tools is ~2.8Gb and contains the underlying programs needed to do the analysis
-	wget -c https://edge-dl.lanl.gov/EDGE/2.x/edge_2.3_thirdParty_softwares.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/2.x/edge_2.4_thirdParty_softwares.tgz
 
 	## Pipeline database is ~17Gb and contains the other databases needed for EDGE
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_pipeline_databases.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_pipeline_databases.tgz
 	
 	## BWA index is ~41Gb and contains the databases for bwa taxonomic identification pipeline
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_bwa_index.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_bwa_index.tgz
 	
 	## HOST genomes BWA index is ~41Gb for Host removal, including human, bacteria, phiX, viruses, invertebrate vectors of human pathogens
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_HostIndex.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_HostIndex.tgz
 	
 	## NCBI Genomes is ~21Gb and contain the full genomes for prokaryotes and some viruses
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_NCBI_genomes.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_NCBI_genomes.tgz
 	
 	## GOTTCHA database is ~16Gb and contains the custom databases for the GOTTCHA taxonomic identification pipeline
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_GOTTCHA_db.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_GOTTCHA_db.tgz
 		
 	## Amplicon database is ~78Mb and contains the databases for Qiime 16s and 18s ITS pipeline
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_amplicons_db.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_amplicons_db.tgz
 	
 	## NT database is ~25Gb and contains the NCBI nt database for contig identification
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_nt_20160426.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_nt_20160426.tgz
 	
 	## ShortBRED database is ~27Mb and contains the databases used by ShortBRED for virulence factors and read based antibiotic resistance analysis
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_ShortBRED_Database.tgz
-
-	## Diamond database is ~16Gb and contains the databases from RefSeq for protein based taxonomic identification
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_diamond_db.tgz
-
-        ## MetaPhlAn2 database is 1.1Gb contains the databases used for the MetaPhlAn2 taxonomic identification pipeline
-        wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_metaphlan2DB.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_ShortBRED_Database.tgz
 	
+	## Diamond database is ~16Gb and contains the databases from RefSeq for protein based taxonomic identification
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_diamond_db.tgz
+
+        ## MetaPhlAn2 database is 1.1Gb file contains the databases used for the MetaPhlAn2 taxonomic identification pipeline
+        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_metaphlan2DB.tgz
+
+	## GOTTCHA2 databases is 38Gb file and contains the custom databases for the GOTTCHA2 taxonomic identification pipeline 
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_GOTTCHA2_db_20190729.tgz
+
+        ## Kraken2 database is 26Gb file contains the databases used for the Kraken2 taxonomic identification pipeline
+        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_Kraken2_db_20190104.tgz
+	
+        ## Centrifuge database is 20G file contains the databases used for the Centrifuge taxonomic identification pipeline
+        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_Centrifuge_db_20200329.tgz
+
+        ## PanGIA database is 15G file for PanGIA taxonomic identification pipeline
+        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_PanGIA_db.tgz
+
+        ## MICCR database is 48GB contains the databases used for the contig taxonomic identification pipeline
+        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_ContigTax_db_20190114.tgz
+
+        ## CheckM database is 275MB contains the databases used for the Metagenome Binned contig quality assessment.
+        wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_checkM_db_20190213.tgz
+
+        ## Qiime2 database is 1.1GB contians 16s,18s and ITS db.
+        wget -c  https://ref-db.edgebioinformatics.org/EDGE/dev/edge_qiime2_db_20191218.tgz
+
 	(Optional)
 	## Other Host bwa index ~18Gb for host removal, including pig, sheep, cow, monkey, hamster. and goat.
-	wget -c https://edge-dl.lanl.gov/EDGE/DB/edge_dev_otherHostIndex.tgz
-	
-	## GOTTCHA2 databases are 27Gb and ~1Gb and contains the custom databases for the GOTTCHA2 taxonomic identification pipeline 
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_GOTTCHA2_bac_db.tgz
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_GOTTCHA2_virus_db.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_otherHostIndex.tgz
 	
 	## For machine with < 32Gb memory, we suggest to use the smaller BWA index (~14Gb) and contains the databases for bwa taxonomic identification pipeline 
-	wget -c https://edge-dl.lanl.gov/EDGE/dev/edge_dev_bwa_mini_index.tgz
+	wget -c https://ref-db.edgebioinformatics.org/EDGE/dev/edge_dev_bwa_mini_index.tgz
         
 .. warning:: Be patient; the database files are huge.
 
 3. Unpack main archive::
 
-	tar -xvzf edge_dev_main.tgz
+	tar -xvzf edge_2.4_main.tgz
 
 .. note:: The main directory, edge_dev, will be created.
 
@@ -73,9 +92,12 @@ EDGE Installation
 
 4. Unpack the third party software into main directory (edge)::
 
-	tar -xvzf edge_dev_thirdParty_softwares.tgz -C edge/
+	tar -xvzf edge_2.4_thirdParty_softwares.tgz -C edge/
 	
 .. note:: You should see a thirdParty directory inside the edge directory.
+
+.. note:: 
+        If you are updating from old version, you should still expand the new thirdParty tgz file into the existing thirdParty directory.
 
 5 Unpack the databases::
 	
@@ -90,6 +112,11 @@ EDGE Installation
         tar -xvzf edge_dev_HostIndex.tgz
         tar -xvzf edge_dev_diamond_db.tgz
         tar -xvzf edge_dev_metaphlan2DB.tgz
+        tar -xvzf edge_GOTTCHA2_db_20181115.tgz
+        tar -xvzf edge_Kraken2_db_20190104.tgz
+        tar -xvzf edge_ContigTax_db_20190114.tgz
+        tar -xvzf edge_checkM_db_20190213.tgz
+        tar -xvzf edge_qiime2_db_20190227.tgz
 
 .. note:: At this point, you should see a database directory and the edge directory.
 
@@ -119,6 +146,7 @@ It will install the following depended :doc:`tools <third_party>`.
 	* megahit
 	* long_read_assembly
         * racon
+        * unicycler
 
   * Annotation
 
@@ -134,6 +162,7 @@ It will install the following depended :doc:`tools <third_party>`.
 	* prodigal
 	* tbl2asn
 	* ShortBRED
+        * antismash
 
   * Alignment
 
@@ -148,16 +177,24 @@ It will install the following depended :doc:`tools <third_party>`.
 
   * Taxonomy
 
-	* kraken
+	* kraken2
 	* metaphlan2
 	* kronatools
 	* gottcha
 	* gottcha2
+        * centrifuge
+        * miccr
+        * pangia
 
   * Phylogeny
 
 	* FastTree
 	* RAxML
+
+  * Metagenome
+
+        * MaxBin    
+        * checkM
 
   * Utility
 
@@ -176,7 +213,9 @@ It will install the following depended :doc:`tools <third_party>`.
 	* omics-pathway-viewer
 	* NanoPlot
 	* Porechop
+        * seqtk
 	* Rpackages
+        * Chromium
 
   * Perl_Modules
 
@@ -204,6 +243,7 @@ It will install the following depended :doc:`tools <third_party>`.
 	* DETEQT
 	* reference-based_assembly
 	* PyPiReT
+        * qiime2
 	
 8. Restart the Terminal Session to allow $EDGE_HOME to be exported.
 
@@ -223,7 +263,7 @@ After installing the packages above, it is highly recommended to test the instal
 .. image:: img/testResult.png
    :align: center
 
-There are 17 module/unit tests which took around 2 hours 14 mins in our testing environments. (64 cores 2.30GHz, 512GB ram with CentOS-7.1.1503 ). 
+There are 20 module/unit tests which took around 2 hours07 mins in our testing environments. (64 cores 2.30GHz, 512GB ram with CentOS-7.1.1503 ). 
 You will see test output on the terminal indicating test successes and failures. The **Specialty Genes Profiling test** will fail in this stage since it requires `virulence database imported <installation.html#mysql-databases-creation>`_ and `configured <installation.html#edge-configuration>`_. 
 You can test it again after database created and configured. Some tests may fail due to missing external applications/modules/packages or failed installation.
 These will be noted separately in the $EDGE_HOME/testData/runXXXXTest/TestOutput/error.log or log files in each modules. If these are related to features of EDGE that you are not using, this is acceptable. 
@@ -240,14 +280,14 @@ Apache Web Server Configuration
 	For Ubuntu
 
 	Double check $EDGE_HOME/edge_ui/apache_conf/edge_apache.conf alias directories the match EDGE
-	installation path at line 2,5,6,16,17,29,59.
+	installation path at line 2,5,6,16,17,29,38,69.
 
 	The default is configured as http://localhost/edge_ui/ or http://www.yourdomain.com/edge_ui/
 
 	For CentOS
 
 	Double check $EDGE_HOME/edge_ui/apache_conf/edge_httpd.conf alias directories the match EDGE
-	installation path at line 2,5,6,16,17,29,59.
+	installation path at line 2,5,6,16,17,29,38,70.
 
 	The default is configured as http://localhost/edge_ui/ or http://www.yourdomain.com/edge_ui/
 
@@ -287,7 +327,7 @@ Apache Web Server Configuration
 	For CentOS
 
 	> sudo cp $EDGE_HOME/edge_ui/apache_conf/edge_httpd.conf /etc/httpd/conf.d/
-	> sudo cp $EDGE_HOME/edge_ui/apache_conf/centos_httpd.conf /etc/httpd/conf/httpd.conf
+	> sudo cp -f $EDGE_HOME/edge_ui/apache_conf/centos_httpd.conf /etc/httpd/conf/httpd.conf
 	> sudo cp $EDGE_HOME/edge_ui/apache_conf/pangia-vis.conf /etc/httpd/conf.d/
 
 
@@ -335,12 +375,18 @@ User Management System Installation: MySQL
 	These will be used when setting up the user management system
 
 .. note:: 
-        If you were using the user management system and are updating from EDGE v1.1 to this version. You only need to run the commands below and continue to install tomcat.::
+        If you were using the user management system and are updating from old EDGE version to this version. You only need to run the commands below and continue to install tomcat.::
  
                 cd $EDGE_HOME/userManagement
                 mysql -u $UN -p userManagement
                 mysql> source update_userManagement_db.sql
 
+.. note::
+       For MySQL 5.7 (Ubuntu 18.04), please append following content to /etc/mysql/my.cnf ::
+       
+           [mysqld]
+           show_compatibility_56 = on
+           sql-mode=""
 
 
 1. Start mysql (if it is not already running)::
@@ -351,7 +397,7 @@ User Management System Installation: MySQL
 
 	For CentOS
 
-	sudo systemctl start mariadb.service && sudo systemctl enable mariadb.service
+	> sudo systemctl start mariadb.service && sudo systemctl enable mariadb.service
 
 2. Secure mysql:
 
@@ -390,7 +436,7 @@ User Management System Installation: MySQL
 
 	.. note::
 
-		This is the database user (not an individual account). 
+		This is the database user (not an individual EDGE user account). 
 		
 		Replace with the appropriate values::
 
@@ -402,12 +448,21 @@ User Management System Installation: MySQL
 		mysql> CREATE USER 'yourDBUsername'@'localhost' IDENTIFIED BY 'yourDBPassword';
 		mysql> GRANT ALL PRIVILEGES ON userManagement.* to 'yourDBUsername'@'localhost';
 		mysql> exit;
+        
+        If you need to allow remote access mysql, you will need to change localhost to % and comment out
+        bind_address=127.0.0.1 at /etc/mysql/mysql.conf.d/mysqld.cnf
+
+                
+		mysql> CREATE USER 'yourDBUsername'@'%' IDENTIFIED BY 'yourDBPassword';
+		mysql> GRANT ALL PRIVILEGES ON userManagement.* to 'yourDBUsername'@'%';
+		mysql> exit;
+
 
 User Management System Installation: Tomcat
 -------------------------------------------
 
 .. note:: 
-        If you were using the user management system and are updating from EDGE v1.1 to this version. You only need continue from step 6.
+        If you were using the user management system and are updating from old EDGE version to this version. You only need continue from step 6.
  
 
 
@@ -421,7 +476,7 @@ User Management System Installation: Tomcat
 
 		Update the values for the username and password accordingly before running the code.
 
-		This adds the following to /usr/share/tomcat/conf/tomcat-users.xml or /var/lib/tomcat7/conf/tomcat-users.xml::
+		This adds the following to /usr/share/tomcat/conf/tomcat-users.xml or /usr/share/tomcat7/conf/tomcat-users.xml::
 
 			<role rolename="admin"/>
 			<user username="yourAdminName" password="yourAdminPassword" roles="admin"/>
@@ -430,13 +485,13 @@ User Management System Installation: Tomcat
 
 		For Ubuntu
 
-		sudo sed -i 's@</tomcat-users>@<role rolename="admin"/>\n<user username="'"${UN}"'" password="'"${PW}"'" roles="admin"/>\n</tomcat-users>@g' /var/lib/tomcat7/conf/tomcat-users.xml
+		sudo sed -i 's@</tomcat-users>@<role rolename="admin"/>\n<user username="'"${UN}"'" password="'"${PW}"'" roles="admin"/>\n</tomcat-users>@g' /usr/share/tomcat7/conf/tomcat-users.xml
 
 		For CentOS
 
 		sudo sed -i 's@<!-- <role rolename="admin"/> -->@<!-- <role rolename="admin"/> -->\n<role rolename="admin"/>\n<user username="'"${UN}"'" password="'"${PW}"'" roles="admin"/>@g' /usr/share/tomcat/conf/tomcat-users.xml
 
-2. Update inactive timeout to a more reasonable number 4320 min (3 days) from default (30mins) in /var/lib/tomcat7/conf/web.xml or /etc/tomcat/web.xml
+2. Update inactive timeout to a more reasonable number 4320 min (3 days) from default (30mins) in /usr/share/tomcat7/conf/web.xml or /etc/tomcat/web.xml
 
 	.. note::
 
@@ -450,7 +505,7 @@ User Management System Installation: Tomcat
 
 		For Ubuntu
 
-		sudo sed -i 's@<session-timeout>.*</session-timeout>@<session-timeout>4320</session-timeout>@g' /var/lib/tomcat7/conf/web.xml
+		sudo sed -i 's@<session-timeout>.*</session-timeout>@<session-timeout>4320</session-timeout>@g' /usr/share/tomcat7/conf/web.xml
 
 		For CentOS
 
@@ -479,7 +534,7 @@ User Management System Installation: Tomcat
 4. Restart tomcat server::
 
 	For Ubuntu
-	sudo service tomcat7 restart
+	sudo /usr/share/tomcat7/bin/startup.sh
 
 	For CentOS7
 	sudo systemctl restart tomcat
@@ -514,13 +569,13 @@ User Management System Installation: Tomcat
 
 		For Ubuntu
 
-		sudo rm -rf /var/lib/tomcat7/webapps/userManagementWS
-		sudo cp userManagementWS.war /var/lib/tomcat7/webapps/
-		sudo rm -rf /var/lib/tomcat7/webapps/userManagement
-		sudo cp userManagement.war /var/lib/tomcat7/webapps/
-		sudo chmod 755 /var/lib/tomcat7/webapps/*war
-		sudo cp userManagementWS.xml /var/lib/tomcat7/conf/Catalina/localhost/
-		sudo chmod 744 /var/lib/tomcat7/conf/Catalina/localhost/userManagementWS.xml
+		sudo rm -rf /usr/share/tomcat7/webapps/userManagementWS
+		sudo cp userManagementWS.war /usr/share/tomcat7/webapps/
+		sudo rm -rf /usr/share/tomcat7/webapps/userManagement
+		sudo cp userManagement.war /usr/share/tomcat7/webapps/
+		sudo chmod 755 /usr/share/tomcat7/webapps/*war
+		sudo cp userManagementWS.xml /usr/share/tomcat7/conf/Catalina/localhost/
+		sudo chmod 744 /usr/share/tomcat7/conf/Catalina/localhost/userManagementWS.xml
 
 		For CentOS
 
@@ -536,8 +591,8 @@ User Management System Installation: Tomcat
 
 	For Ubuntu
 	
-	sudo sed -i 's@username=.*$@username="'"${UN}"'"@' /var/lib/tomcat7/conf/Catalina/localhost/userManagementWS.xml
-	sudo sed -i 's@password=.*$@password="'"${PW}"'"@' /var/lib/tomcat7/conf/Catalina/localhost/userManagementWS.xml
+	sudo sed -i 's@username=.*$@username="'"${UN}"'"@' /usr/share/tomcat7/conf/Catalina/localhost/userManagementWS.xml
+	sudo sed -i 's@password=.*$@password="'"${PW}"'"@' /usr/share/tomcat7/conf/Catalina/localhost/userManagementWS.xml
 
 	For CentOS
 	
@@ -552,7 +607,9 @@ User Management System Installation: Tomcat
 
 		The default configuration is to have the user management system on localhost with email notifications turned off.
 
-		Modify the user management sys.properties if you want to change the default behavior.
+                For "Forgot your password" reset function, the 'email_notification' should be on and a valid email address for 'email_sender'
+
+		Modify the user management sys.properties if you want to change the default behavior. (make sure port match with tomcat server)
 
 		You will need to copy the sys.properties files to the directory of the userManagement deployment.
 
@@ -560,8 +617,8 @@ User Management System Installation: Tomcat
 
 		For Ubuntu
 
-		sudo cp $EDGE_HOME/userManagement/sys.properties /var/lib/tomcat7/webapps/userManagement/WEB-INF/classes/sys.properties
-		sudo chmod 744 /var/lib/tomcat7/webapps/userManagement/WEB-INF/classes/sys.properties
+		sudo cp $EDGE_HOME/userManagement/sys.properties /usr/share/tomcat7/webapps/userManagement/WEB-INF/classes/sys.properties
+		sudo chmod 744 /usr/share/tomcat7/webapps/userManagement/WEB-INF/classes/sys.properties
 
 		For CentOS
 
@@ -571,7 +628,8 @@ User Management System Installation: Tomcat
 10. Restart tomcat server::
 
 	For Ubuntu
-	sudo service tomcat7 restart
+	sudo /usr/share/tomcat7/bin/shutdonw.sh
+	sudo /usr/share/tomcat7/bin/startup.sh
 
 	For CentOS7
 	sudo systemctl restart tomcat
@@ -589,7 +647,13 @@ User Management System Installation: Tomcat
 		If "HTTP Status 401" error shows, please make sure the tomcat username and password in the `first step <installation.html#user-management-system-installation-tomcat>`_ match with what entered here.
 
                 If "HTTP Status 403" error shows, please make sure the tomcat rolename in the `first step <installation.html#user-management-system-installation-tomcat>`_ match with /var/lib/tomcat/webapps/userManagementWS/WEB-INF/web.xml and where the web.xml file existed or not. 
+
+                If "HTTP Status 500" error shows, please make sure the port (default: 8080) for tomcat service are matched in tomcat server.xml, $EDGE_HOME/edge_ui/sys.properties and $EDGE_HOME/userManagement/sys.properties (need to redo step 9).
+
+                If "Fatal Exception: Could not create resource factory instance during transaction connect" error shows, please make suer the tomcat userManagementWS.xml is in /etc/tomcat/Catalina/localhost/ or /usr/share/tomcat7/conf/Catalina/localhost/ and corret.
 		 
+                If you want to use userManagment as a remote service instead of localhost, please modify the userManagementWS.xml file to allow access from remote ip address, and corresponding mysql address.
+
 		Should this script fail, the userManagement is not set up correctly.
 
 	::
@@ -610,7 +674,7 @@ User Management System Installation: Tomcat
 
 	* modify $EDGE_HOME/edge_ui/javascript/social.js, change apps id you created on each social media.
 
-	.. note :: You need to register your EDGE's domain on each social media to get apps id. e.g.: A FACEBOOK app needs to be created and configured for the domain and website set up by EDGE.
+	.. note :: This allow users to use their social media account to login EDGE. You need to register your EDGE's domain on each social media to get apps id. e.g.: A FACEBOOK app needs to be created and configured for the domain and website set up by EDGE.
 		   see `https://developers.facebook.com/ <https://developers.facebook.com/.>`_	and
 		   `StackOverflow Q&A <http://stackoverflow.com/questions/16345777/given-url-is-not-allowed-by-the-application-configuration>`_
 
@@ -622,6 +686,10 @@ User Management System Installation: Tomcat
 
 
 14. Optional: configure sendmail to use SMTP to email out of local domain:
+
+                * edit /usr/share/tomcat7/conf/Catalina/localhost/userManagementWS.xml (Ubuntu) or /etc/tomcat/Catalina/localhost/userManagementWS.xml (CentOS)
+
+                        email_host=<ip or host name>
 
 		* edit /etc/mail/sendmail.cf and edit this line:
 
@@ -670,7 +738,7 @@ MYSQL Databases CREATION
 
 	Edit $EDGE_HOME/edge_ui/sys.properties with the appropriate database username and password.
 
-	# Virluence Factoer database
+	# Virluence Factors database
 	VFDB_dbhost = localhost
 	VFDB_dbport = 3306
 	VFDB_dbname = virulenceFactors
@@ -735,17 +803,23 @@ EDGE configuration
 	#The archive space is for offload the main computational disk space
 	edgeui_archive=/path/to/archive_SPACE
 
+7. Adjust number of CPUs assigned to EDGE and number of job able to run simultaneously::
+
+        edgeui_tol_cpu=4
+        max_num_jobs=2
 	
-6. Turn on Social Login function::
+8. Turn on/off Social Login function::
 	
 	#If you have User Management system installation step 18 done.
-	user_social_login=1
+	user_social_login=0
  
-7. Turn on job submission for SGE/UGE cluster environment:
+9. Turn on job submission for SGE/UGE cluster environment:
 
 .. note:: make sure the user/apache user running EDGE is a cluster user. 
 		  
 		  :code:`qconf -suserl`	 to check cluster user list
+
+          Edit the sge_bin, sge_root and sge_cell corresonding to your cluster environment 
 
 ::
 	
@@ -804,47 +878,6 @@ Configure SELinux on CentOS
 EDGE Docker image
 =================
 
-EDGE has a lot of dependencies and can (but doesn’t have to) be very challenging to install. The EDGE docker gets around the difficulty of installation by providing a functioning EDGE full install on top of offical CentOS Base Image(7.3.1611).
-You can find the image and usage at `docker hub <https://hub.docker.com/r/bioedge/edge_dev>`_. We would recommend to use Docker container for easy update in the future. 
+EDGE has a lot of dependencies and can (but doesn’t have to) be very challenging to install. The EDGE docker gets around the difficulty of installation by providing a functioning EDGE full install on top of offical Ubuntu Base Image (18.04.2).
+You can find the image and usage at `docker hub <https://hub.docker.com/r/bioedge/edge_24_ubuntu>`_. We would recommend to use Docker container for easy update in the future. 
 
-EDGE VMware/OVF Image
-=====================
-
-You can start using EDGE by launching a local instance of the EDGE VM. The image is built by `VMware Fusion v8.5.0 <https://my.vmware.com/web/vmware/info?slug=desktop_end_user_computing/vmware_workstation/8_0>`_. 
-The pre-built EDGE VM is provided in `Open Virtualization Format (OVA/OVF) <https://en.wikipedia.org/wiki/Open_Virtualization_Format>`_ which is supported by major virtualization players, such as VMware / VirtualBox / Red Hat Enterprise Virtualization, etc. 
-Unfortunately, this may not always work perfectly, as each VM technology seems to use slightly different OVA/OVF implementations that aren’t entirely compatible. For example, the `auto-deploy <https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2005131>`_ feature and `the path of auto-mount shared folders <http://pubs.vmware.com/fusion-4/index.jsp#com.vmware.fusion.help.doc/GUID-5FAA1AF9-C886-40E9-87CD-770235EFB754.html?resultof=%2522%2553%2568%2561%2572%2565%2564%2522%2520%2522%2573%2568%2561%2572%2565%2522%2520%2522%2566%256f%256c%2564%2565%2572%2522%2520>`_ between host and guest which are used in the EDGE VMware image may not be compatible with other VM technologies (or may need advanced tweaks). 
-Therefore, we highly recommended using `VMware Workstation Player <http://www.vmware.com/products/player/playerpro-evaluation.html>`_ which is free for non-commercial, personal and home use. 
-The `EDGE databases <installation.html#edge-installation>`_ are not included in the image. You will need to download and mount the databases, input and output directories after you launch the VM. Below are instructions to run EDGE VM on your local server:
-
-1. Install `VMware Workstation player <http://www.vmware.com/products/player/playerpro-evaluation.html>`_ .
-2. Download the EDGE VM image (EDGE_vm_dev_RC2.ova) from `LANL FTP site <https://edge-dl.lanl.gov/EDGE/dev/VirtualMachine/>`_.
-3. Download the `EDGE databases <installation.html#edge-installation>`_ and follow instruction to unpack them. 
-4. Import the EDGE VM image. If the first time import fails (due to strict OVF specification), click **"Retry"**; this will allow import of the image.
-
-.. figure:: img/VMware_import.png
-	:width: 70 %
-	
-.. figure:: img/VMware_warning.png
-	:width: 70 %
-	
-5. Configure your VM.
-
-  * Allocate at least 10GB memory to the VM
-  * Share/Mount the database, input and output directory to the "database", "EDGE_input" and "EDGE_output" directory in the VM guest OS. 
-
-.. figure:: img/VMware_Sharing_settings.png
-	:scale: 100 %
-
-6. Start EDGE VM.
-7. Access EDGE VM using host browser (http://<IP_OF_VM>/edge_ui/).
-
-Note that the IP address will also be provided when the instance starts up.
-
-.. figure:: img/VMware_login.png
-	:scale: 100 %
-
-8. Control EDGE VM with default credentials
-
-  * OS Login: edge/edge
-  * EDGE user: admin@my.edge/admin
-  * MariaDB root: root/edge

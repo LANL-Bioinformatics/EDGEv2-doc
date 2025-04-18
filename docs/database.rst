@@ -62,18 +62,22 @@ Human Genome
 The bwa index is prebuilt in the EDGE.
 The human hs_ref_GRCh38 sequences from NCBI ftp site.
 
-* website `ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/ <ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/>`_
+* website `https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/ <https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/>`_
 
-MiniKraken DB
+Kraken2 DB
 -------------
 
-Kraken is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. MiniKraken is default in EDGE and is a pre-built 8 GB database constructed from complete bacterial, archaeal, and viral genomes in RefSeq (as of Oct. 12, 2017).
+Kraken2 is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. Kraken2 database in EDGE is a pre-built database constructed from Refseq bacteria, archaea, and viral libraries and the GRCh38 human genome and UniVec_Core in RefSeq (as of Dec 20, 2018).
 
-* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807 <http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807>`_
-* website: `http://ccb.jhu.edu/software/kraken/ <http://ccb.jhu.edu/software/kraken/>`_
+* Kraken1 paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807 <http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807>`_
+* website: `http://ccb.jhu.edu/software/kraken2/ <http://ccb.jhu.edu/software/kraken2/>`_
 
-Full Kraken database is available on `LANL FTP <https://edge-dl.lanl.gov/EDGE/full_kraken_db/>`_
-User can use it as custom kraken db. The database is large (155G after unzip) and using it requires ~150 GB memory too.
+Centrifuge DB
+-------------
+Centrifuge is a very rapid and memory-efficient system for the classification of DNA sequences from microbial samples, with better sensitivity than and comparable accuracy to other leading systems. The database includes human genome, prokaryotic genomes, and viral genomes including 106 SARS-CoV-2 complete genomes. (as of Mar 29, 2020)
+
+* Centrifuge paper: `https://pubmed.ncbi.nlm.nih.gov/27852649/ <https://pubmed.ncbi.nlm.nih.gov/27852649/>`_
+* website: `https://ccb.jhu.edu/software/centrifuge/ <https://ccb.jhu.edu/software/centrifuge/>`_
 
 GOTTCHA DB
 ----------
@@ -129,27 +133,27 @@ CARD
 The Comprehensive Antibiotic Resistance Database
 
 * website: `https://card.mcmaster.ca/ <https://card.mcmaster.ca/>`_
-* Version: 1.0.6
+* Version: 3.0.7
 
 Amplicon: 16s/18s/ITS
 ---------------------
 
-  For QIIME (Quantitative insights into Microbial Ecology) analysis
+  For QIIME (Quantitative insights into Microbial Ecology) analysis (scikit-learn=0.21.2)
 	
   * Greengenes OTUs (16s)
 
     * website: `http://greengenes.secondgenome.com/ <http://greengenes.secondgenome.com/>`_
-    * version: 2013 May
+    * version: 13_8
 	
   * SILVA OTUs (16S/18S)
 
     * website: `http://www.arb-silva.de/download/archive/qiime/ <http://www.arb-silva.de/download/archive/qiime/>`_
-    * version: 119
+    * version: 132
     
   * UNITE OTUs (ITS)
   
     * website: `https://unite.ut.ee/repository.php <https://unite.ut.ee/repository.php>`_
-    * version: 12_11
+    * version: 18.11.2018
     
 .. _build-host-index:
 
@@ -157,23 +161,15 @@ Building bwa index
 ==================
 Here take human genome as example.
 
-1. Download the human hs_ref_GRCh38 sequences from NCBI ftp site.
+1. Download the human hs_ref_GRCh38 sequences from NCBI ftp site::
 
-  Go to `ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/ <ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/>`_
-  Or use a provided perl script in $EDGE_HOME/scripts/ ::
+    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz
 
-    perl $EDGE_HOME/scripts/download_human_refseq_genome.pl output_dir
+2. Use the installed bwa to build the index::
 
-2. Gunzip the downloaded fasta file and concatenate them into one human genome multifasta file::
+    $EDGE_HOME/bin/bwa index -p human_ref_GRCh38 GCA_000001405.28_GRCh38.p13_genomic.fna.gz
 
-    gunzip hs_ref_GRCh38.*.fa.gz
-    cat hs_ref_GRCh38.*.fa > human_ref_GRCh38.all.fasta
-
-3. Use the installed bwa to build the index::
-
-    $EDGE_HOME/bin/bwa index human_ref_GRCh38.all.fasta
-
-  Now, you can configure the config file with "host=/path/human_ref_GRCh38.all.fasta" for host removal step.
+  Now, you can configure the config file with "host=/path/to/human_ref_GRCh38" for host removal step.
   
 .. _SNP-db:
 

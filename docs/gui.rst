@@ -59,7 +59,7 @@ In the "additional options", there are several more options, for output path, nu
 Run Qiime
 ---------
 
-Click "Run Qiime" will cause a section to appear for Qiime input and parameters.  Currently, EDGE suports three amplicon types, `16s using GreenGenes database, 16s/18s using SILVA database, and Fungal ITS <http://qiime.org/home_static/dataFiles.html>`_. Similar to "Run EDGE", input can be either from the Sequence Read Archive (SRA, internet required) or browse the EDGE Input Directory based on the reads type. The Qiime pipeline support one Reads Type in a run, paired-reads, single end reads, or de-multiplexed reads directory. There is also a mapping file input requirment which is adapted from `QIIME Metadata mapping file <http://qiime.org/documentation/file_formats.html>`_.  This mapping file contains all of the information about the samples necessary to perform the data analysis. It is in tab-delimited format. In general, the header for this mapping file starts with a pound (#) character, and generally requires a "SampleID", "BarcodeSequence", and a "Description".
+Click "Run Qiime2" will cause a section to appear for Qiime input and parameters.  Currently, EDGE suports four amplicon types, `16s using GreenGenes database, 16s/18s using SILVA database, 16s V3-V4 341F/805R (SILVA) and Fungal ITS <https://docs.qiime2.org/2019.10/data-resources/>`_. Similar to "Run EDGE", input can be browse the EDGE Input Directory based on the reads type. The Qiime pipeline support one Reads Type in a run, paired-reads, single end reads, or de-multiplexed reads directory. There is also a mapping file input requirment which is adapted from `QIIME Metadata mapping file <https://docs.qiime2.org/2019.10/tutorials/metadata/>`_.  This mapping file contains all of the information about the samples necessary to perform the data analysis. It is in tab-delimited format or EXCEL (.xlsx) file. In general, the header for this mapping file starts with a pound (#) character, and generally requires a "SampleID", "BarcodeSequence", and a "Description". (Cap does matter) Users can put more meaningful metadata fields for analysis between #SampleID and Description column, ex BodySite, age, date, location, etc. 
 
 .. image:: img/qiime_input.png
    :align: center
@@ -75,21 +75,27 @@ Control1  AGCCATCGTCTA    Control    Negative
 Control2  CGTCTAACCATG    Control    Spike-in Control
 ========= =============== ========== ================
 
-When the reads type is "De-multiplexed Reads Directory ", the mapping file needs a 'Files' column with **FASTQ** filenames for each sampleID. It can be paired-end or single-end FASTQ file and paired-end FASTQ files are comma-separated.
+When the reads type is "De-multiplexed Reads Directory ", the mapping file needs a 'Files' column with **FASTQ** filenames for each sampleID. It can be paired-end or single-end FASTQ file where paired-end FASTQ files are comma-separated.
 
-========= ======================= ========== ================
-#SampleID Files                   SampleType Description
-========= ======================= ========== ================
-Sample1   S1.R1.fastq,S1.R2.fastq Stool      MiSeq,metagenome
-Sample2   S2.R1.fastq,S2.R2.fastq Blood      MiSeq,clinical 
-Control1  C1.R1.fastq,C1.R2.fastq Control    Negative 
-Control2  C2.R1.fastq,C2.R2.fastq Control    Spike-in Control
-========= ======================= ========== ================
+========= ======================= ========== ========== === ================
+#SampleID Files                   SampleType Date       Age   Description
+========= ======================= ========== ========== === ================
+Sample1   S1.R1.fastq,S1.R2.fastq Stool      2019-05-10 60  MiSeq,metagenome
+Sample2   S2.R1.fastq,S2.R2.fastq Blood      2019-08-10 70  MiSeq,clinical 
+Control1  C1.R1.fastq,C1.R2.fastq Control    2019-09-01 45  Negative 
+Control2  C2.R1.fastq,C2.R2.fastq Control    2019-08-10 50  Spike-in Control
+========= ======================= ========== ========== === ================
+
+.. note:: 
+    
+    example metadata: https://data.qiime2.org/2020.2/tutorials/moving-pictures/sample_metadata.tsv
+    
+    While QIIME 2 does not enforce standards for what types of metadata to collect, the `MIMARKS <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3367316/>`_ standard provides recommendations for microbiome studies and may be helpful in determining what information to collect in your study. If you plan to deposit your data in a data archive (e.g. `ENA <https://www.ebi.ac.uk/ena>`_ or `Qiita <https://qiita.ucsd.edu/>`_), it is also important to determine the types of metadata expected by the archive, as each archive may have its own requirements.
 
 Run DETEQT
 ----------
 
-Click "Run DETEQT" will cause a section to appear for DETEQT input and parameters. The DETEQT is a pipeline for diagnostic targeted sequencing adjudication. You may find more information from `here <https://chienchilo.bitbucket.io/targetedNGS/>`_. The DETEQT pipeline required user to select a directory, a metadata mapping file and a targeted amplicon references. The metadata mapping file is a tab-delimited file or excel file which header or first row includes #SampleID and Files. In the Files column, the paired-end fastq files are separated by a comma(,) and all the fastq files should be located in the input directory. The reference is comprised of only target regions in FASTA format in the assay.
+Click "Run DETEQT" will cause a section to appear for DETEQT input and parameters. The DETEQT is a pipeline for diagnostic targeted sequencing adjudication. You may find more information from `here <https://chienchilo.bitbucket.io/targetedNGS/>`_. The DETEQT pipeline required user to select a directory, a metadata mapping file and a targeted amplicon references. The metadata mapping file is a tab-delimited file or excel file which header or first row includes #SampleID and Files. (Cap does matter) In the Files column, the paired-end fastq files are separated by a comma(,) and all the fastq files should be located in the input directory. The reference is comprised of only target regions in FASTA format in the assay.
 
 .. image:: img/detect_input.png
    :align: center
@@ -114,7 +120,7 @@ HCV       hcv.1.fq,hcv.2.fq
 Run PiReT
 ---------
 
-Click "Run PiReT" will cause a section to appear for PiReT input and parameters. The PiReT is a pipeline for Reference based Transcriptomics analysis. You may find more information from `PiReT github <https://github.com/mshakya/PyPiReT>`_. The PiReT pipeline required user to select a directory, a experimental design file and references FASTA and `GFF <http://gmod.org/wiki/GFF3>`_ files in the parameters section. The experimental file is a tab-delimited file or excel file which header or first row includes #SampleID, Files, and Group. In the Files column, the paired-end fastq files are separated by a colon(:) and all the fastq files should be located in the input directory. The feature ID in the reference GFF files should be uniqe within the scope of the GFF file.
+Click "Run PiReT" will cause a section to appear for PiReT input and parameters. The PiReT is a pipeline for Reference based Transcriptomics analysis. You may find more information from `PiReT github <https://github.com/mshakya/PyPiReT>`_. The PiReT pipeline required user to select a directory, a experimental design file and references FASTA and `GFF <http://gmod.org/wiki/GFF3>`_ files in the parameters section. The experimental file is a tab-delimited file or excel file which header or first row includes #SampleID, Files, and Group. (Cap does matter) In the Files column, the paired-end fastq files are separated by a colon(:) and all the fastq files should be located in the input directory. The feature ID in the reference GFF files should be uniqe within the scope of the GFF file.
 
 .. image:: img/piret_input.png
    :align: center
@@ -198,6 +204,9 @@ In order to enable reference-based analysis, switch the toggle box to “On” a
    :align: center
 
 Given a reference genome fasta file, EDGE will turn on the analysis of the reads/contigs mapping to reference and JBrowse reference track generation. If a GenBank file is provided, EDGE will also turn on variant analysis.
+
+.. note:: If there are more than one sequence in the reference genome fasta (mulit > ), the fasta header mush have unique id for each sequence which is defined in the beginning non space words.  ex: >unique_id any other annotation
+    
 
 Taxonomy Classification
 -----------------------
