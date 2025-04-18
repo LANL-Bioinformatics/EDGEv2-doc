@@ -12,22 +12,40 @@ Installing the EDGE platform on CentOS 7
 
 3. Partitioning your system appropriately is left to the user.  In most cases, the EDGE server is a dedicated unit, so an automatic guided repartitioning is advised.
 
-4. Disable kdump.
+4. Provide a meaningful hostname for your machine under the Network & Host Name section of the installer.  Remember the NMRC Guidance: "You built it, you name it."
 
-5. Provide a meaningful hostname for your machine under the Network & Host Name section of the installer.  Remember the NMRC Guidance: "You built it, you name it."
+5. Click Begin Installation in the lower right corner to start the installation.
 
-6. Click Begin Installation in the lower right corner to start the installation.
+6. Provide a root password for the machine, and write it down somewhere.
 
-7. Provide a root password for the machine, and write it down somewhere.
+7. Create another user from the User Settings menu, with the username edge and the full name EDGE Administrator.  Select "Make this user an Administrator."  This will be the user that runs the services that compose EDGE.  Give the user a strong password, and write that down too.
 
-8. Create another user from the User Settings menu, with the username edge and the full name EDGE Administrator.  Select "Make this user an Administrator."  This will be the user that runs the services that compose EDGE.  Give the user a strong password, and write that down too.
-
-9. Allow the machine to reboot:
+8. Allow the machine to reboot and log into the desktop as edge with your password.
 
 You'll be asked to agree to the CentOS license agreement.  Please read it fully, it affects the way that you interact with your system and your data.
 
 By default, any network connection plugged in will attempt to autoconfigure by DHCP.  If your facility requires the use of static addressing, you can configure the network connections by clicking on the network icon on the top right of the screen.
 
-10. Open a terminal window from the menu drop-down in the top left corner.  (The following steps can also be performed through an SSH terminal connection to your server.  EDGE works perfectly well headless with just a network connection.) 
+9. Open a terminal window from the menu drop-down in the top left corner.  (The following steps can also be performed through an SSH terminal connection to your server.  EDGE works perfectly well headless with just a network connection.)  Install the Extra Packages for Enterprise Linux repository package and perform baseline updates::
 
-11. Follow instructions for CentOS 7 under System requirements to install OS specific software and updates.
+  sudo yum install -y epel-release
+  sudo yum update -y
+
+10. Install the system package prerequisites for EDGE::
+
+  sudo yum install -y libX11-devel readline-devel libXt-devel ncurses-devel inkscape scipy expat expat-devel freetype freetype-devel zlib zlib-devel perl-App-cpanminus perl-Test-Most python-pip blas-devel atlas-devel lapack-devel numpy numpy-f2py libpng12 libpng12-devel perl-XML-Simple perl-JSON libxml2 libxml2-devel perl-libxml-perl perl-Heap-Simple-XS
+
+11. Update the prerequisite python and perl packages::
+
+  sudo pip install --upgrade six scipy matplotlib
+  sudo cpanm App::cpanoutdated
+  sudo su -
+  cpan-outdated -p | cpanm
+
+12. Install more Perl modules we'll be using (Some may not install perfectly, don't worry about it.  BioPerl does need to install properly to move forward.)::
+
+  sudo cpanm Algorithm::Munkres Archive::Tar Array::Compare Clone CGI CGI::Simple Convert::Binary::C GD Graph GraphViz HTML::Template HTML::TableExtract List::MoreUtils PostScript::TextBlock SOAP::Lite SVG SVG::Graph Set::Scalar Sort::Naturally Spreadsheet::ParseExcel Time::Piece XML::Parser::PerlSAX XML::SAX XML::SAX::Writer XML::Simple XML::Twig XML::Writer BioPerl
+
+13. Install Apache to run the Web UI::
+
+  sudo yum install -y httpd httpd-tools

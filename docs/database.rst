@@ -3,26 +3,28 @@ Databases
 
 EDGE provided databases
 =======================
+MvirDB
+------ 
 
-Taxnomomy Database Info Table
------------------------------
+A Microbial database of protein toxins, virulence factors and antibiotic resistance genes for bio-defense applications
 
-https://lanl-bioinformatics.github.io/EDGE/docs/taxonomyDBtable.html
+* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=17090593 <http://www.ncbi.nlm.nih.gov/pubmed/?term=17090593>`_
+* website: `http://mvirdb.llnl.gov/ <http://mvirdb.llnl.gov/>`_
 
 NCBI Refseq
 -----------
 
 EDGE prebuilt blast db and bwa_index of NCBI RefSeq genomes.
 
-* Bacteria: `NCBI all complete bacteria download method <http://www.ncbi.nlm.nih.gov/genome/doc/ftpfaq/#allcomplete>`_
+* Bacteria: `ftp://ftp.ncbi.nih.gov/genomes/Bacteria/all.fna.tar.gz <ftp://ftp.ncbi.nih.gov/genomes/Bacteria/all.fna.tar.gz>`_
 
-  * Version: NCBI 2017 Oct 3
-  * 245 Archaea + 7917 Bacteria genomes
+  * Version: NCBI 2015 Aug 11
+  * 2786 genomes
   
-* Virus:  `NCBI Virus <https://www.ncbi.nlm.nih.gov/nuccore/?term=Viruses[Organism]%20NOT%20cellular%20organisms[ORGN]%20NOT%20wgs[PROP]%20NOT%20gbdiv%20syn[prop]%20AND%20(srcdb_refseq[PROP]%20OR%20nuccore%20genome%20samespecies[Filter])>`_
+* Virus:  `NCBI Virus <http://www.ncbi.nlm.nih.gov/nuccore/?term=Viruses%5BOrganism%5D+NOT+cellular+organisms%5BORGN%5D+NOT+wgs%5BPROP%5D+NOT+AC_000001%3AAC_999999%5Bpacc%5D+NOT+gbdiv+syn%5Bprop%5D+AND+(srcdb_refseq%5BPROP%5D+OR+nuccore+genome+samespecies%5BFilter%5D)+NOT+%22complete+cds%22>`_
 
-  * Version: NCBI 2017 Oct 3
-  * 7458 complete genomes + Neighbor Nucleotoides (118039 seuqences)
+  * Version: NCBI 2015 Aug 11
+  * 4834 RefSeq + Neighbor Nucleotoides (51300 seuqences)
 
 see $EDGE_HOME/database/bwa_index/id_mapping.txt for all gi/accession to genome name lookup table.
 
@@ -35,53 +37,47 @@ Krona taxonomy
 Update Krona taxonomy db
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Go to the folder in the KronaTools installation and run (internet required) ::
+Download these files from `ftp://ftp.ncbi.nih.gov/pub/taxonomy <ftp://ftp.ncbi.nih.gov/pub/taxonomy>`_::
 
-    cd $EDGE_HOME/thirdParty/KronaTools-2.7/
-    ./updateTaxonomy.sh
-    ./updateAccessions.sh 
+    wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_nucl.dmp.gz
+    wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_prot.dmp.gz
+    wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
+    
+Transfer the files to the taxonomy folder in the standalone KronaTools installation and run::
 
-This uses about 16 GB of disk space and an additional 16 GB of scratch space during installation (at the time of this writing; it is always growing) and takes minutes or up to an hour to run.
+    $EDGE_HOME/thirdParty/KronaTools-2.4/updateTaxonomy.sh --local.
 
 
-Metaphlan4 database
--------------------
 
-MetaPhlAn 4 relies on ~5.1M unique clade-specific marker genes identified from ~1M microbial genomes (~236,600 references and 771,500 metagenomic assembled genomes) spanning 26,970 species-level genome bins (SGBs, http://segatalab.cibio.unitn.it/data/Pasolli_et_al.html), 4,992 of them taxonomically unidentified at the species level.
+Metaphlan database
+------------------
 
-* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=36823356 <http://www.ncbi.nlm.nih.gov/pubmed/?term=36823356>`_
-* website: `http://huttenhower.sph.harvard.edu/metaphlan4 <http://huttenhower.sph.harvard.edu/metaphlan4>`_
+MetaPhlAn relies on unique clade-specific marker genes identified from 3,000 reference genomes.
+
+* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413 <http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413>`_
+* website: `http://huttenhower.sph.harvard.edu/metaphlan <http://huttenhower.sph.harvard.edu/metaphlan>`_
 
 Human Genome
 ------------
 The bwa index is prebuilt in the EDGE.
 The human hs_ref_GRCh38 sequences from NCBI ftp site.
 
-* website `https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/ <https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/>`_
+* website `ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/ <ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/>`_
 
-Kraken2 DB
+MiniKraken DB
 -------------
 
-Kraken2 is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. Kraken2 database in EDGE is a pre-built database constructed from Refseq bacteria, archaea, and viral libraries and the GRCh38 human genome and UniVec_Core in RefSeq (as of Dec, 2021).
+Kraken is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. MiniKraken is a pre-built 4 GB database constructed from complete bacterial, archaeal, and viral genomes in RefSeq (as of Mar. 30, 2014).
 
-* Kraken1 paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807 <http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807>`_
-* website: `http://ccb.jhu.edu/software/kraken2/ <http://ccb.jhu.edu/software/kraken2/>`_
-
-Centrifuge DB
--------------
-Centrifuge is a very rapid and memory-efficient system for the classification of DNA sequences from microbial samples, with better sensitivity than and comparable accuracy to other leading systems. The database includes human genome, prokaryotic genomes, and viral genomes including 106 SARS-CoV-2 complete genomes. (as of Mar 29, 2020)
-
-* Centrifuge paper: `https://pubmed.ncbi.nlm.nih.gov/27852649/ <https://pubmed.ncbi.nlm.nih.gov/27852649/>`_
-* website: `https://ccb.jhu.edu/software/centrifuge/ <https://ccb.jhu.edu/software/centrifuge/>`_
+* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807 <http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807>`_
+* website: `http://ccb.jhu.edu/software/kraken/ <http://ccb.jhu.edu/software/kraken/>`_
 
 GOTTCHA DB
 ----------
 
-A novel, annotation-independent and signature-based metagenomic taxonomic profiling tool.
+A novel, annotation-independent and signature-based metagenomic taxonomic profiling tool. (manuscript in submission)
 
-* website: `http://lanl-bioinformatics.github.io/GOTTCHA/ <http://lanl-bioinformatics.github.io/GOTTCHA/>`_
-* ftp: `https://edge-dl.lanl.gov/gottcha/ <https://edge-dl.lanl.gov/gottcha/>`_
-* version: v20150825
+* website: `https://github.com/LANL-Bioinformatics/GOTTCHA <https://github.com/LANL-Bioinformatics/GOTTCHA>`_
 
 SNPdb
 -----
@@ -96,75 +92,38 @@ The bwa index is prebuilt in the EDGE.
 * paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=22135296 <http://www.ncbi.nlm.nih.gov/pubmed/?term=22135296>`_
 * website: `https://www.vectorbase.org <https://www.vectorbase.org>`_
 
-version: 2014 July 24
+Version: 2014 July 24
 
-NCBI Nucleotide database (NT) database
---------------------------------------
+Other optional database
+-----------------------
 
-* website: `ftp://ftp.ncbi.nih.gov/blast/db/ <ftp://ftp.ncbi.nih.gov/blast/db/>`_
-* version: 2016 April 26
+Not in the EDGE but you can download.
 
-VFDB
-----
+* NCBI nr/nt blastDB: `ftp://ftp.ncbi.nih.gov/blast/db/ <ftp://ftp.ncbi.nih.gov/blast/db/>`_
 
-A Microbial database of virulence factors
-
-* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=26578559 <http://www.ncbi.nlm.nih.gov/pubmed/?term=26578559>`_
-* website: `http://www.mgc.ac.cn/VFs/main.htm <http://www.mgc.ac.cn/VFs/main.htm>`_
-* version: 20160818
-
-
-ARDB
-----
-
-Antibiotic Resistance Genes Database
-
-* website: `http://ardb.cbcb.umd.edu/index.html <http://ardb.cbcb.umd.edu/index.html>`_
-* version: 1.1
-
-CARD
-----
-
-The Comprehensive Antibiotic Resistance Database
-
-* website: `https://card.mcmaster.ca/ <https://card.mcmaster.ca/>`_
-* Version: 3.0.7
-
-Amplicon: 16s/18s/ITS
----------------------
-
-  For QIIME (Quantitative insights into Microbial Ecology) analysis (scikit-learn=0.24.1)
-	
-  * Greengenes OTUs (16s)
-
-    * website: `http://greengenes.secondgenome.com/ <http://greengenes.secondgenome.com/>`_
-    * version: 2022_10
-	
-  * SILVA OTUs (16S/18S)
-
-    * website: `http://www.arb-silva.de/download/archive/qiime/ <http://www.arb-silva.de/download/archive/qiime/>`_
-    * version: 138
-    
-  * UNITE OTUs (Fungal ITS)
-  
-    * website: `https://unite.ut.ee/repository.php <https://unite.ut.ee/repository.php>`_
-    * version: 16.10.2022
-    
 .. _build-host-index:
 
 Building bwa index
 ==================
 Here take human genome as example.
 
-1. Download the human hs_ref_GRCh38 sequences from NCBI ftp site::
+1. Download the human hs_ref_GRCh38 sequences from NCBI ftp site.
 
-    wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz
+  Go to `ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/ <ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/>`_
+  Or use a provided perl script in $EDGE_HOME/scripts/ ::
 
-2. Use the installed bwa to build the index::
+    perl $EDGE_HOME/scripts/download_human_refseq_genome.pl output_dir
 
-    $EDGE_HOME/bin/bwa index -p human_ref_GRCh38 GCA_000001405.28_GRCh38.p13_genomic.fna.gz
+2. Gunzip the downloaded fasta file and concatenate them into one human genome multifasta file::
 
-  Now, you can configure the config file with "host=/path/to/human_ref_GRCh38" for host removal step.
+    gunzip hs_ref_GRCh38.*.fa.gz
+    cat hs_ref_GRCh38.*.fa > human_ref_GRCh38.all.fasta
+
+3. Use the installed bwa to build the index::
+
+    $EDGE_HOME/bin/bwa index human_ref_GRCh38.all.fasta
+
+  Now, you can configure the config file with "host=/path/human_ref_GRCh38.all.fasta" for host removal step.
   
 .. _SNP-db:
 

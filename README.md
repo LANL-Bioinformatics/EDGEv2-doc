@@ -1,12 +1,12 @@
 EDGE Documentation
 ==================
 
-Documentation for the EDGE bioinformatics project, a DTRA-funded NGS analysis effort.
+Documentation for the EDGE bioinformatics project version v1.1, a DTRA-funded NGS analysis effort.
 
 * [Read The Docs](http://edge.readthedocs.org/)
 
-* [PDF](https://readthedocs.org/projects/edge/downloads/pdf/develop/)
+* [PDF](https://readthedocs.org/projects/edge/downloads/pdf/latest/)
 
-* [ebook](https://readthedocs.org/projects/edge/downloads/epub/develop/)
+* [ebook](https://readthedocs.org/projects/edge/downloads/epub/latest/)
 
-![ebook](https://bytebucket.org/nmrcjoe/edge-docs/raw/eb16a4b0eaeedd2f2dc65961d6cf2b1aafd4ebc8/ebook.png)
+![ebook](https://bytebucket.org/nmrcjoe/edge-docs/raw/a224a36166901772efc558343007c6b25a131aa4/ebook.png)

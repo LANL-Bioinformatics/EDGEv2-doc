@@ -9,9 +9,9 @@ Graphic User Interface (GUI)
 ############################
 
 
-The User Interface was mainly implemented in `JQuery Mobile <http://jquerymobile.com>`_, CSS, javascript and perl CGI. It is a HTML5-based user interface system designed to make responsive web sites and apps that are accessible on all smartphone, tablet and desktop devices. (see :ref:`How to make an app icon on the mobile device<app_icon_fandq>`)
+The User Interface was mainly implemented in `JQuery Mobile <http://jquerymobile.com>`_, CSS, javascript and perl CGI. It is a HTML5-based user interface system designed to make responsive web sites and apps that are accessible on all smartphone, tablet and desktop devices.
 
-See  `GUI page <http://edgebioinformatics.org>`_
+See  `GUI page <https://bioedge.lanl.gov/edge_ui/>`_
 
 
 User Login
@@ -27,6 +27,8 @@ Click on the upper-right user icon will pop up an user login window.
 Upload Files
 ============
 
+For LANL security policy, the function is not implemented at https://bioedge.lanl.gov/edge_ui/.
+
 EDGE supports input from NCBI Sequence Reads Archive (SRA) and select files from the EDGE server. To analyze users' own data, EDGE allows user to upload fastq, fasta and genbank (which can be in gzip format) and text (txt). Max file size is '5gb' and files will be kept for 7 days.
 Choose “Upload files” from the navigation bar on the left side of the screen.  Add users files by clicking "Add Files" buttion or drag files to the upload feature window. Then, click "Start Upload" button to upload files to EDGE server.
 
@@ -36,15 +38,12 @@ Choose “Upload files” from the navigation bar on the left side of the screen
 Initiating an analysis job
 ==========================
 
-Choose “Run EDGE” or "Run Qiime" from the navigation bar on the left side of the screen. 
+Choose “Run EDGE” from the navigation bar on the left side of the screen. 
 
-.. image:: img/initiating.png
+.. image:: img/initiating.jpg
    :align: center
 
-Run EDGE
---------
-
-Click "Run EDGE" will cause a section to appear called “Input Raw Reads.” Here, you may browse the EDGE Input Directory and select FASTQ files containing the reads to be analyzed. EDGE supports gzip compressed fastq files. At minimum, EDGE will accept two FASTQ files containing paired reads and/or one FASTQ file containing single reads as initial input. Alternatively, rather than providing files through the EDGE Input Directory, you may decide to use as input reads from the Sequence Read Archive (SRA). In this case, select the "yes" option next to "Input from NCBI Sequence Reads Archive" and a field will appear where you can type in an SRA accession number.
+This will cause a section to appear called “Input Raw Reads.” Here, you may browse the EDGE Input Directory and select FASTQ files containing the reads to be analyzed. EDGE supports gzip compressed fastq files. At minimum, EDGE will accept two FASTQ files containing paired reads and/or one FASTQ file containing single reads as initial input. Alternatively, rather than providing files through the EDGE Input Directory, you may decide to use as input reads from the Sequence Read Archive (SRA). In this case, select the "yes" option next to "Input from NCBI Sequence Reads Archive" and a field will appear where you can type in an SRA accession number.
 
 .. image:: img/input.jpg
    :align: center
@@ -56,88 +55,11 @@ In addition to the input read files, you have to specify a project name. The pro
 
 In the "additional options", there are several more options, for output path, number of CPUs, and config file. In most cases, you can ignore these options, but they are described briefly below.
 
-Run Qiime
----------
+Output path
+-----------
 
-Click "Run Qiime2" will cause a section to appear for Qiime input and parameters.  Currently, EDGE suports four amplicon types, `16s using GreenGenes database, 16s/18s using SILVA database, 16s V3-V4 341F/805R (SILVA) and Fungal ITS <https://docs.qiime2.org/2023.5/data-resources/>`_. Similar to "Run EDGE", input can be browse the EDGE Input Directory based on the reads type. The Qiime pipeline support one Reads Type in a run, paired-reads, single end reads, or de-multiplexed reads directory. There is also a mapping file input requirment which is adapted from `QIIME Metadata mapping file <https://docs.qiime2.org/2023.5/tutorials/metadata/>`_.  This mapping file contains all of the information about the samples necessary to perform the data analysis. It is in tab-delimited format or EXCEL (.xlsx) file. In general, the header for this mapping file starts with a pound (#) character, and generally requires a "SampleID", "BarcodeSequence", and a "Description". (Cap does matter) Users can put more meaningful metadata fields for analysis between #SampleID and Description column, ex BodySite, age, date, location, etc. 
+You may specify the output path if you would like your results to be output to a specific location. In most cases, you can leave this field blank and the results will be automatically written to a standard location, $EDGE_HOME/edge_ui/EDGE_output. In most cases, it is sufficient to leave these options to the default settings.
 
-.. image:: img/qiime_input.png
-   :align: center
-
-Mapping File Example:
- 
-========= =============== ========== ================
-#SampleID BarcodeSequence SampleType Description
-========= =============== ========== ================
-Sample1   ACATACCGTCTA    Stool      MiSeq,metagenome
-Sample2   ACCATGCGTCTA    Blood      MiSeq,clinical 
-Control1  AGCCATCGTCTA    Control    Negative 
-Control2  CGTCTAACCATG    Control    Spike-in Control
-========= =============== ========== ================
-
-When the reads type is "De-multiplexed Reads Directory ", the mapping file needs a 'Files' column with **FASTQ** filenames for each sampleID. It can be paired-end or single-end FASTQ file where paired-end FASTQ files are comma-separated.
-
-========= ======================= ========== ========== === ================
-#SampleID Files                   SampleType Date       Age   Description
-========= ======================= ========== ========== === ================
-Sample1   S1.R1.fastq,S1.R2.fastq Stool      2019-05-10 60  MiSeq,metagenome
-Sample2   S2.R1.fastq,S2.R2.fastq Blood      2019-08-10 70  MiSeq,clinical 
-Control1  C1.R1.fastq,C1.R2.fastq Control    2019-09-01 45  Negative 
-Control2  C2.R1.fastq,C2.R2.fastq Control    2019-08-10 50  Spike-in Control
-========= ======================= ========== ========== === ================
-
-.. note:: 
-    
-    example metadata: https://data.qiime2.org/2020.2/tutorials/moving-pictures/sample_metadata.tsv
-    
-    While QIIME 2 does not enforce standards for what types of metadata to collect, the `MIMARKS <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3367316/>`_ standard provides recommendations for microbiome studies and may be helpful in determining what information to collect in your study. If you plan to deposit your data in a data archive (e.g. `ENA <https://www.ebi.ac.uk/ena>`_ or `Qiita <https://qiita.ucsd.edu/>`_), it is also important to determine the types of metadata expected by the archive, as each archive may have its own requirements.
-
-Run DETEQT
-----------
-
-Click "Run DETEQT" will cause a section to appear for DETEQT input and parameters. The DETEQT is a pipeline for diagnostic targeted sequencing adjudication. You may find more information from `here <https://chienchilo.bitbucket.io/targetedNGS/>`_. The DETEQT pipeline required user to select a directory, a metadata mapping file and a targeted amplicon references. The metadata mapping file is a tab-delimited file or excel file which header or first row includes #SampleID and Files. (Cap does matter) In the Files column, the paired-end fastq files are separated by a comma(,) and all the fastq files should be located in the input directory. The reference is comprised of only target regions in FASTA format in the assay.
-
-.. image:: img/detect_input.png
-   :align: center
-
-Metadata Mapping File example:
- 
-========= =======================
-#SampleID      Files
-========= =======================
-Dengue    sample.1.fq,sample.2.fq
-Flu       flu.1.fq,flu.2.fq 
-Ebola     ebola.1.fq,ebola.2.fq
-MERS      mers.1.fq,mers.2.fq
-SARS      sars.1.fq,sars.2.fq
-Zika      zika.1.fq,zika.2.fq
-Rota      rota.1.fq,rota.2.fq
-HIV       hiv.1.fq,hiv.2.fq
-Hanta     hanta.1.fq,hanta.2.fq
-HCV       hcv.1.fq,hcv.2.fq
-========= =======================
-
-Run PiReT
----------
-
-Click "Run PiReT" will cause a section to appear for PiReT input and parameters. The PiReT is a pipeline for Reference based Transcriptomics analysis. You may find more information from `PiReT github <https://github.com/mshakya/PyPiReT>`_. The PiReT pipeline required user to select a directory, a experimental design file and references FASTA and `GFF <http://gmod.org/wiki/GFF3>`_ files in the parameters section. The experimental file is a tab-delimited file or excel file which header or first row includes #SampleID, Files, and Group. (Cap does matter) In the Files column, the paired-end fastq files are separated by a colon(:) and all the fastq files should be located in the input directory. The feature ID in the reference GFF files should be uniqe within the scope of the GFF file.
-
-.. image:: img/piret_input.png
-   :align: center
-
-Experimental Design File example:
- 
-========= ============================= ========
-#SampleID Files                         Group
-========= ============================= ========
-samp1	  samp1_R1.fastq:samp1_R2.fastq	liver
-samp2	  samp2_R1.fastq:samp2_R2.fastq	spleen
-samp3	  samp3_R1.fastq:samp3_R2.fastq	spleen
-samp4	  samp4_R1.fastq:samp4_R2.fastq	liver
-samp5	  samp5_R1.fastq:samp5_R2.fastq	liver
-samp6	  samp6_R1.fastq:samp6_R2.fastq	spleen
-========= ============================= ========
- 
 Number of CPUs
 --------------
 
@@ -154,7 +76,7 @@ Batch project submission
 ------------------------
 
 The “Batch project submission” section is toggled off by default. Clicking on it will open it up and toggle off the “Input Sequence” section at the same time. 
-When you have many samples in “EDGE Input Directory” and would like to run them with the same configuration, instead of submitting several times, you can compile a Excel file with project name, fastq inputs and optional project descriptions (you can download the example excel file and fill it with your own data) and submit through the “Batch project submission” section
+When you have many samples in “EDGE Input Directory” and would like to run them with the same configuration, instead of submitting several times, you can compile a text file with project name, fastq inputs and optional project descriptions (upload or paste it) and submit through the “Batch project submission” section
 
 .. image:: img/batchsubmit.jpg
    :align: center
@@ -205,9 +127,6 @@ In order to enable reference-based analysis, switch the toggle box to “On” a
 
 Given a reference genome fasta file, EDGE will turn on the analysis of the reads/contigs mapping to reference and JBrowse reference track generation. If a GenBank file is provided, EDGE will also turn on variant analysis.
 
-.. note:: If there are more than one sequence in the reference genome fasta (mulit > ), the fasta header mush have unique id for each sequence which is defined in the beginning non space words.  ex: >unique_id any other annotation
-    
-
 Taxonomy Classification
 -----------------------
 
@@ -228,22 +147,6 @@ EDGE supports 5 pre-computed pathogen databases ( :ref:`E.coli, Yersinia, Franci
 
 .. image:: img/phylogeny.jpg
    :align: center
-
-
-Specialty Genes Profiling
--------------------------
-
-For specialty gene analysis, the user selects read-based analysis and/or ORF(contig)-based analysis.
-
-.. image:: img/specialtygenes.png
-   :align: center
-
-For read-based analysis antibiotic resistance genes and virulence genes are detected using `Huttenhower lab’s progam ShortBRED <https://huttenhower.sph.harvard.edu/shortbred>`_. The antibiotic resistance gene database was generated by the developers of ShortBRED using genes from `ARDB <http://ardb.cbcb.umd.edu/>`_ and `Resfams <http://www.dantaslab.org/resfams/>`_. The virulence genes database was generated by the developers of EDGE using `VFDB <http://www.mgc.ac.cn/VFs/main.htm>`_.
-
-For ORF-based analysis, antibiotic resistance genes are detected using `CARD’s (Comprehensive Antibiotic Resistance Database) <https://card.mcmaster.ca/>`_ program `RGI (Resistance Gene Identifier) <https://card.mcmaster.ca/analyze/rgi>`_. RGI uses CARD’s custom database of antibiotic resistance genes. The virulence genes are detected using ShortBRED with a database generated by the developers of EDGE using `VFDB <http://www.mgc.ac.cn/VFs/main.htm>`_.
-
-
-
 
 PCR Primer Tools
 -----------------
@@ -347,22 +250,8 @@ The available actions are:
   Allow guests and other users to view the project.
    
    
-* **Make project Private/Public**
-  Restrict access to viewing the project to only yourself. Or open it everyone.
-
-
-Project List Table
-==================
-
-When you click "My Project List", all your projects or projects shared to you will show in a table. It lists the projects status, submission time, running time, type and owner. User can select one or more jobs from the checkbox in the project table and perform actions similar to "Action" Widget described in the previous section. The action will apply to all checked projects.  
-
-.. image:: img/projectlist.png
-   :align: center
-   
-When mouse over the action buttons on the project list page, it will show a pop up info for the action buttons. There is a special action button for multiple projects, "Compare Selected Projects Taxonomy Classification (HeatMap)" which will draw heatmaps of taxonomy profiling results for multiple projects using `MetaComp <https://github.com/seninp-bioinfo/MetaComp>`_.  
-
-.. image:: img/projectlistactions.png
-   :align: center
+* **Make project Private**
+  Restrict access to viewing the project to only yourself.
    
 Other Methods of Accessing EDGE
 ===============================
