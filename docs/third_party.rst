@@ -17,8 +17,15 @@ Assembly
 
   * Citation: Nurk, Bankevich et al. (2013) `Assembling single-cell genomes and mini-metagenomes from chimeric MDA products. J Comput Biol. 2013 Oct;20(10):714-37 <https://www.ncbi.nlm.nih.gov/pubmed/24093227>`_
   * Site: `http://bioinf.spbau.ru/spades <http://bioinf.spbau.ru/spades>`_
-  * Version: 3.5.0
+  * Version: 3.7.1
   * License: GPLv2
+
+* MEGAHIT
+
+  * Citation: Li D. et al. (2015) `MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics. 2015 May 15;31(10):1674-6 <http://www.ncbi.nlm.nih.gov/pubmed/25609793>`_
+  * Site: `https://github.com/voutcn/megahit <https://github.com/voutcn/megahit>`_
+  * Version: 1.0.3
+  * License: GPLv3
 
 Annotation
 ==========
@@ -29,7 +36,6 @@ Annotation
   * Site: `http://ratt.sourceforge.net/ <http://ratt.sourceforge.net/>`_
   * Version: 
   * License: 
-  * Note: **The original RATT program does not deal with reverse complement strain annotations transfer. We edited the source code to fix it.**
   
 * Prokka
 
@@ -37,8 +43,6 @@ Annotation
   * Site: `http://www.vicbioinformatics.com/software.prokka.shtml <http://www.vicbioinformatics.com/software.prokka.shtml>`_
   * Version: 1.11
   * License: GPLv2 
-  * Note: **The NCBI tool tbl2asn included within PROKKA can have very slow runtimes (up to several hours) while it is dealing with numerous contigs, such as when we input metagenomic data. We modified the code to allow parallel processing using tbl2asn.**
-
       
 * tRNAscan
 
@@ -58,7 +62,7 @@ Annotation
 
   * Citation: Camacho, C., et al. (2009) `BLAST+: architecture and applications, BMC bioinformatics, 10, 421. <http://www.ncbi.nlm.nih.gov/pubmed/20003500>`_
   * Site: `ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.29/ <ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.29/>`_
-  * Version: 2.2.29
+  * Version: 2.5.0
   * License: Public domain
   
 * blastall
@@ -95,15 +99,22 @@ Annotation
   * Site: `http://prodigal.ornl.gov/ <http://prodigal.ornl.gov/>`_
   * Version: 2_60
   * License: GPLv3
-  
+
+* ShortBRED
+
+  * Citation: Kaminski J et al. (2015) `High-Specificity Targeted Functional Profiling in Microbial Communities with ShortBRED. PLoS Comput Biol. 2015 Dec 18;11(12):e1004557 <http://www.ncbi.nlm.nih.gov/pubmed/26682918>`_
+  * Site: `http://huttenhower.sph.harvard.edu/shortbred <http://huttenhower.sph.harvard.edu/shortbred>`_
+  * Version: 0.9.4
+  * License: 
+
 * tbl2asn
 
   * Citation:
   * Site: `http://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/ <http://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/>`_
-  * Version: 24.3 (2015 Apr 29th)
+  * Version: 24.9 (2016 Feb 3rd)
   * License: 
 
-.. warning:: tbl2asn must be compiled within the past year to function.  We attempt to recompile every 6 months or so.  Most recent compilation is 26 Feb 2015
+.. warning:: tbl2asn must be compiled within the past year to function.  We attempt to recompile every 6 months or so.  Most recent compilation is 3 Feb 2016
 
 Alignment
 =========
@@ -126,7 +137,7 @@ Alignment
 
   * Citation: Langmead, B. and Salzberg, S.L. (2012) `Fast gapped-read alignment with Bowtie 2, Nature methods, 9, 357-359. <http://www.ncbi.nlm.nih.gov/pubmed/22388286>`_
   * Site: `http://bowtie-bio.sourceforge.net/bowtie2/index.shtml <http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>`_
-  * Version: 2.1.0
+  * Version: 2.2.6
   * License: GPLv3
 
 * BWA
@@ -142,6 +153,13 @@ Alignment
   * Site: `http://mummer.sourceforge.net/ <http://mummer.sourceforge.net/>`_
   * Version: 3.23
   * License: GPLv3
+
+* RAPSearch2
+
+  * Citation: Zhao et al. (2012) `RAPSearch2: a fast and memory-efficient protein similarity search tool for next-generation sequencing data. Bioinformatics. 2012 Jan 1;28(1):125-6 <http://www.ncbi.nlm.nih.gov/pubmed/22039206>`_
+  * Site: `http://omics.informatics.indiana.edu/mg/RAPSearch2/ <http://omics.informatics.indiana.edu/mg/RAPSearch2/>`_
+  * Version: 2.22
+  * License: GPL
 
 Taxonomy Classification
 =======================
@@ -163,7 +181,7 @@ Taxonomy Classification
 * GOTTCHA
 
   * Citation: Tracey Allen K. Freitas, Po-E Li, Matthew B. Scholz, Patrick S. G. Chain (2015) `Accurate Metagenome characterization using a hierarchical suite of unique signatures. Nucleic Acids Research (DOI: 10.1093/nar/gkv180) <http://www.ncbi.nlm.nih.gov/pubmed/25765641>`_
-  * Site: `https://github.com/LANL-Bioinformatics/GOTTCHA <https://github.com/LANL-Bioinformatics/GOTTCHA>`_
+  * Site: `http://lanl-bioinformatics.github.io/GOTTCHA/ <http://lanl-bioinformatics.github.io/GOTTCHA/>`_
   * Version: 1.0b
   * License: GPLv3
   
@@ -190,15 +208,35 @@ Phylogeny
   * Site: `http://search.cpan.org/~rvosa/Bio-Phylo/ <http://search.cpan.org/~rvosa/Bio-Phylo/>`_
   * Version: 0.58
   * License: GPLv3
+  
+* PhaME
+
+  * Citation: Sanaa Afroz Ahmed, Chien-Chi Lo, Po-E Li, Karen W Davenport, Patrick S.G. Chain. `From raw reads to trees: Whole genome SNP phylogenetics across the tree of life. bioRxiv doi: http://dx.doi.org/10.1101/032250 <http://dx.doi.org/10.1101/032250>`_
+  * Site: `https://github.com/LANL-Bioinformatics/PhaME/ <https://github.com/LANL-Bioinformatics/PhaME/>`_
+  * Version: 1.0
+  * License: GPLv3
+  
+
+Specialty Genes
+===============
+
+* ShortBRED
+
+  * Citation: James Kaminski, Molly K. Gibson, Eric A. Franzosa, Nicola Segata, Gautam Dantas, and Curtis Huttenhower. Fast and Accurate Metagenomic Search with ShortBRED.
+  * Site: `https://huttenhower.sph.harvard.edu/shortbred`_
+  * Version: 0.9.4M
+  * License: MIT
+
+* RGI (Resistance Gene Identifier)
+
+  * Citation: McArthur & Wright. 2015. Bioinformatics of antimicrobial resistance in the age of molecular epidemiology. Current Opinion in Microbiology, 27, 45-50.
+  * Site: `https://card.mcmaster.ca/analyze/rgi`_
+  * Version: 3.1.1
+  * License:  Apache Software License
+
 
 Visualization and Graphic User Interface
 ========================================
-
-* JQuery Mobile
-
-  * Site: `http://jquerymobile.com <http://jquerymobile.com>`_
-  * Version :1.4.3
-  * License: CC0
 
 * jsPhyloSVG
 
@@ -218,9 +256,63 @@ Visualization and Graphic User Interface
 
   * Citation: Ondov, B.D., Bergman, N.H. and Phillippy, A.M. (2011) `Interactive metagenomic visualization in a Web browser, BMC bioinformatics, 12, 385. <http://www.ncbi.nlm.nih.gov/pubmed/21961884>`_
   * Site: `http://sourceforge.net/projects/krona/ <http://sourceforge.net/projects/krona/>`_
-  * Version: 2.4
+  * Version: 2.6
   * License: BSD
+
+* JQuery
+
+  * Site: `http://jquery.com/ <http://jquery.com/>`_
+  * Version: 1.10.2
+  * License: MIT
   
+* JQuery Mobile
+
+  * Site: `http://jquerymobile.com <http://jquerymobile.com>`_
+  * Version: 1.4.3
+  * License: CC0
+  
+* DataTables
+
+  * Site: `https://datatables.net <https://datatables.net>`_
+  * Version: 1.10.11
+  * License: MIT
+  
+* jQuery File Tree
+
+  * Site: `http://www.abeautifulsite.net/jquery-file-tree/ <http://www.abeautifulsite.net/jquery-file-tree/>`_
+  * Version: 1.01
+  * License: GPL and MIT
+  
+* Raphael - JavaScript Vector Library
+
+  * Site: `http://dmitrybaranovskiy.github.io/raphael/ <http://dmitrybaranovskiy.github.io/raphael/>`_
+  * Version: 1.4.3
+  * License: MIT
+  
+* Tooltipster 
+
+  * Site: `http://iamceege.github.io/tooltipster/ <http://iamceege.github.io/tooltipster/>`_
+  * Version: 3.2.6
+  * License: MIT
+
+* Lazy Load XT
+
+  * Site: `http://ressio.github.io/lazy-load-xt/ <http://ressio.github.io/lazy-load-xt/>`_
+  * Version: 1.0.6
+  * License: MIT
+
+* Plupload
+
+  * Site: `http://www.plupload.com <http://www.plupload.com>`_
+  * Version: 2.1.7
+  * License: GPLv2 and OEM 
+  
+* hello.js
+
+  * Site: `http://adodson.com/hello.js/ <http://adodson.com/hello.js/>`_
+  * Version: 1.8.1
+  * License: MIT
+
 Utility
 =======
 
@@ -235,7 +327,7 @@ Utility
 
   * Citation: R Core Team (2013). R: A language and environment for statistical   computing. R Foundation for Statistical Computing, Vienna, Austria.   URL http://www.R-project.org/.
   * Site: `http://www.r-project.org/ <http://www.r-project.org/>`_
-  * Version: 2.15.3
+  * Version: 3.3.2
   * License: GPLv2
   
 * GNU_parallel
@@ -287,5 +379,29 @@ Utility
 
   * Citation: 
   * Site: `https://github.com/ncbi/sra-tools <https://github.com/ncbi/sra-tools>`_
-  * Version: 2.4.4
+  * Version: 2.5.4
   * License: 
+
+* ea-utils
+
+  * Citation: Erik Aronesty (2011) `ea-utils : "Command-line tools for processing biological sequencing data" <https://code.google.com/archive/p/ea-utils/>`_
+  * Site: `https://code.google.com/archive/p/ea-utils/ <https://code.google.com/archive/p/ea-utils/>`_
+  * Version: 1.1.2-537
+  * License: MIT License
+  
+* Anaconda2 (Python 2)
+
+  * Citation: 
+  * Site: `https://anaconda.org`_
+  * Version: 4.1.1
+  * License: 3-clause BSD 
+
+Amplicon Analysis
+=================
+
+* QIIME 
+
+  * Citation: Caporaso et al. (2010) `QIIME allows analysis of high-throughput community sequencing data. Nat Methods. 2010 May;7(5):335-6 <http://www.ncbi.nlm.nih.gov/pubmed/20383131>`_ 
+  * Site: `http://qiime.org/ <http://qiime.org/>`_
+  * Version: 1.9.1
+  * License: GPLv2

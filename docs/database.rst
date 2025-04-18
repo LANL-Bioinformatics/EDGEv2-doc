@@ -3,20 +3,14 @@ Databases
 
 EDGE provided databases
 =======================
-MvirDB
------- 
-
-A Microbial database of protein toxins, virulence factors and antibiotic resistance genes for bio-defense applications
-
-* paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=17090593 <http://www.ncbi.nlm.nih.gov/pubmed/?term=17090593>`_
-* website: `http://mvirdb.llnl.gov/ <http://mvirdb.llnl.gov/>`_
-
 NCBI Refseq
 -----------
 
 EDGE prebuilt blast db and bwa_index of NCBI RefSeq genomes.
 
-* Bacteria: `ftp://ftp.ncbi.nih.gov/genomes/Bacteria/all.fna.tar.gz <ftp://ftp.ncbi.nih.gov/genomes/Bacteria/all.fna.tar.gz>`_
+.. warning:: NCBI restructure the ftp site. The link for Bacteria below is an archive.
+
+* Bacteria: `ftp://ftp.ncbi.nih.gov/genomes/archive/old_refseq/Bacteria/all.fna.tar.gz <ftp://ftp.ncbi.nih.gov/genomes/archive/old_refseq/Bacteria/all.fna.tar.gz>`_
 
   * Version: NCBI 2015 Aug 11
   * 2786 genomes
@@ -75,9 +69,11 @@ Kraken is a system for assigning taxonomic labels to short DNA sequences, usuall
 GOTTCHA DB
 ----------
 
-A novel, annotation-independent and signature-based metagenomic taxonomic profiling tool. (manuscript in submission)
+A novel, annotation-independent and signature-based metagenomic taxonomic profiling tool.
 
-* website: `https://github.com/LANL-Bioinformatics/GOTTCHA <https://github.com/LANL-Bioinformatics/GOTTCHA>`_
+* website: `http://lanl-bioinformatics.github.io/GOTTCHA/ <http://lanl-bioinformatics.github.io/GOTTCHA/>`_
+* ftp: `https://edge-dl.lanl.gov/gottcha/ <https://edge-dl.lanl.gov/gottcha/>`_
+* version: v20150825
 
 SNPdb
 -----
@@ -92,15 +88,59 @@ The bwa index is prebuilt in the EDGE.
 * paper: `http://www.ncbi.nlm.nih.gov/pubmed/?term=22135296 <http://www.ncbi.nlm.nih.gov/pubmed/?term=22135296>`_
 * website: `https://www.vectorbase.org <https://www.vectorbase.org>`_
 
-Version: 2014 July 24
+version: 2014 July 24
 
-Other optional database
------------------------
+NCBI Nucleotide database (NT) database
+--------------------------------------
 
-Not in the EDGE but you can download.
+* website: `ftp://ftp.ncbi.nih.gov/blast/db/ <ftp://ftp.ncbi.nih.gov/blast/db/>`_
+* version: 2016 April 26
 
-* NCBI nr/nt blastDB: `ftp://ftp.ncbi.nih.gov/blast/db/ <ftp://ftp.ncbi.nih.gov/blast/db/>`_
+VFDB
+----
 
+A Microbial database of virulence factors
+
+* paper: 
+* website: 
+
+
+ARDB
+----
+
+Antibiotic Resistance Genes Database
+
+* website: `http://ardb.cbcb.umd.edu/index.html <http://ardb.cbcb.umd.edu/index.html>`_
+* version: 1.1
+
+CARD
+----
+
+The Comprehensive Antibiotic Resistance Database
+
+* website: `https://card.mcmaster.ca/ <https://card.mcmaster.ca/>`_
+* Version: 1.0.6
+
+Amplicon: 16s/18s/ITS
+---------------------
+
+  For QIIME (Quantitative insights into Microbial Ecology) analysis
+	
+  * Greengenes OTUs (16s)
+
+    * website: `http://greengenes.secondgenome.com/ <http://greengenes.secondgenome.com/>`_
+    * version: 2013 May
+	
+  * SILVA OTUs (16S/18S)
+
+    * website: `http://www.arb-silva.de/download/archive/qiime/ <http://www.arb-silva.de/download/archive/qiime/>`_
+    * version: 119
+    
+  * UNITE OTUs (ITS)
+  
+    * website: `https://unite.ut.ee/repository.php <https://unite.ut.ee/repository.php>`_
+    * version: 12_11
+    
 .. _build-host-index:
 
 Building bwa index

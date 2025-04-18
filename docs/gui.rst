@@ -38,12 +38,15 @@ Choose “Upload files” from the navigation bar on the left side of the screen
 Initiating an analysis job
 ==========================
 
-Choose “Run EDGE” from the navigation bar on the left side of the screen. 
+Choose “Run EDGE” or "Run Qiime" from the navigation bar on the left side of the screen. 
 
-.. image:: img/initiating.jpg
+.. image:: img/initiating.png
    :align: center
 
-This will cause a section to appear called “Input Raw Reads.” Here, you may browse the EDGE Input Directory and select FASTQ files containing the reads to be analyzed. EDGE supports gzip compressed fastq files. At minimum, EDGE will accept two FASTQ files containing paired reads and/or one FASTQ file containing single reads as initial input. Alternatively, rather than providing files through the EDGE Input Directory, you may decide to use as input reads from the Sequence Read Archive (SRA). In this case, select the "yes" option next to "Input from NCBI Sequence Reads Archive" and a field will appear where you can type in an SRA accession number.
+Run EDGE
+--------
+
+Click "Run EDGE" will cause a section to appear called “Input Raw Reads.” Here, you may browse the EDGE Input Directory and select FASTQ files containing the reads to be analyzed. EDGE supports gzip compressed fastq files. At minimum, EDGE will accept two FASTQ files containing paired reads and/or one FASTQ file containing single reads as initial input. Alternatively, rather than providing files through the EDGE Input Directory, you may decide to use as input reads from the Sequence Read Archive (SRA). In this case, select the "yes" option next to "Input from NCBI Sequence Reads Archive" and a field will appear where you can type in an SRA accession number.
 
 .. image:: img/input.jpg
    :align: center
@@ -55,6 +58,37 @@ In addition to the input read files, you have to specify a project name. The pro
 
 In the "additional options", there are several more options, for output path, number of CPUs, and config file. In most cases, you can ignore these options, but they are described briefly below.
 
+Run Qiime
+---------
+
+Click "Run Qiime" will cause a section to appear for Qiime input and parameters.  Currently, EDGE suports three amplicon types, `16s using GreenGenes database, 16s/18s using SILVA database, and Fungal ITS <http://qiime.org/home_static/dataFiles.html>`_. Similar to "Run EDGE", input can be either from the Sequence Read Archive (SRA, internet required) or browse the EDGE Input Directory based on the reads type. The Qiime pipeline support one Reads Type in a run, paired-reads, single end reads, or de-multiplexed reads directory. There is also a mapping file input requirment which is adapted from `QIIME Metadata mapping file <http://qiime.org/documentation/file_formats.html>`_.  This mapping file contains all of the information about the samples necessary to perform the data analysis. It is in tab-delimited format. In general, the header for this mapping file starts with a pound (#) character, and generally requires a "SampleID", "BarcodeSequence", and a "Description".
+
+.. image:: img/qiime_input.png
+   :align: center
+
+Mapping File Example:
+ 
+========= =============== ========== ================
+#SampleID BarcodeSequence SampleType Description
+========= =============== ========== ================
+Sample1   ACATACCGTCTA    Stool      MiSeq,metagenome
+Sample2   ACCATGCGTCTA    Blood      MiSeq,clinical 
+Control1  AGCCATCGTCTA    Control    Negative 
+Control2  CGTCTAACCATG    Control    Spike-in Control
+========= =============== ========== ================
+
+When the reads type is "De-multiplexed Reads Directory ", the mapping file needs a 'Files' column with filenames for each sampleID.
+
+========= ======================= ========== ================
+#SampleID Files                   SampleType Description
+========= ======================= ========== ================
+Sample1   S1.R1.fastq,S1.R2.fastq Stool      MiSeq,metagenome
+Sample2   S2.R1.fastq,S2.R2.fastq Blood      MiSeq,clinical 
+Control1  C1.R1.fastq,C1.R2.fastq Control    Negative 
+Control2  C2.R1.fastq,C2.R2.fastq Control    Spike-in Control
+========= ======================= ========== ================
+
+ 
 Output path
 -----------
 
@@ -76,7 +110,7 @@ Batch project submission
 ------------------------
 
 The “Batch project submission” section is toggled off by default. Clicking on it will open it up and toggle off the “Input Sequence” section at the same time. 
-When you have many samples in “EDGE Input Directory” and would like to run them with the same configuration, instead of submitting several times, you can compile a text file with project name, fastq inputs and optional project descriptions (upload or paste it) and submit through the “Batch project submission” section
+When you have many samples in “EDGE Input Directory” and would like to run them with the same configuration, instead of submitting several times, you can compile a Excel file with project name, fastq inputs and optional project descriptions (you can download the example excel file and fill it with your own data) and submit through the “Batch project submission” section
 
 .. image:: img/batchsubmit.jpg
    :align: center
@@ -109,7 +143,7 @@ The Similarity (%) can be varied if desired, but the default is 90 and we would 
 Assembly And Annotation
 -----------------------
 
-The Assembly option by default is turned on. It can be turned off via the toggle button. EDGE performs iterative kmers de novo assembly by `IDBA-UD <http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/>`_ . It performs well on isolates as well as metagenomes but it may not work well on very large genomes. By default, it starts from kmer=31 and iterative step by adding 20 to maximum kmer=121. When the maximum k value is larger than the input average reads length, it will automatically adjust the maximum value to average reads length minus 1. User can set the minimum cutoff value on the final contigs. By default, it will filter out all contigs with size smaller than 200 bp.
+The Assembly option by default is turned on. It can be turned off via the toggle button. EDGE performs iterative kmers de novo assembly by `IDBA-UD <http://i.cs.hku.hk/~alse/hkubrg/projects/idba_ud/>`_ . It performs well on isolates as well as metagenomes but it may not work well on very large genomes. By default, it starts from kmer=31 and iterative step by adding 20 to maximum kmer=124. When the maximum k value is larger than the input average reads length, it will automatically adjust the maximum value to average reads length minus 1. User can set the minimum cutoff value on the final contigs. By default, it will filter out all contigs with size smaller than 200 bp.
 
 .. image:: img/assembly.jpg
    :align: center
@@ -147,6 +181,22 @@ EDGE supports 5 pre-computed pathogen databases ( :ref:`E.coli, Yersinia, Franci
 
 .. image:: img/phylogeny.jpg
    :align: center
+
+
+Specialty Genes Profiling
+-------------------------
+
+For specialty gene analysis, the user selects read-based analysis and/or ORF(contig)-based analysis.
+
+.. image:: img/specialtygenes.png
+   :align: center
+
+For read-based analysis antibiotic resistance genes and virulence genes are detected using `Huttenhower lab’s progam ShortBRED <https://huttenhower.sph.harvard.edu/shortbred>`_. The antibiotic resistance gene database was generated by the developers of ShortBRED using genes from `ARDB <http://ardb.cbcb.umd.edu/>`_ and `Resfams <http://www.dantaslab.org/resfams/>`_. The virulence genes database was generated by the developers of EDGE using `VFDB <http://www.mgc.ac.cn/VFs/main.htm>`_.
+
+For ORF-based analysis, antibiotic resistance genes are detected using `CARD’s (Comprehensive Antibiotic Resistance Database) <https://card.mcmaster.ca/>`_ program `RGI (Resistance Gene Identifier) <https://card.mcmaster.ca/analyze/rgi>`_. RGI uses CARD’s custom database of antibiotic resistance genes. The virulence genes are detected using ShortBRED with a database generated by the developers of EDGE using `VFDB <http://www.mgc.ac.cn/VFs/main.htm>`_.
+
+
+
 
 PCR Primer Tools
 -----------------
@@ -248,10 +298,24 @@ The available actions are:
 
 * **Share Project**
   Allow guests and other users to view the project.
+ 
+  
+* **Make project Private/Public**
+  Restrict access to viewing the project to only yourself. Or open it everyone.
+
+
+Project List Table
+==================
+
+When you click "My Project List", all your projects or projects shared to you will show in a table. It lists the projects status, submission time, running time, type and owner. User can select one or more jobs from the checkbox in the project table and perform actions similar to "Action" Widget described in the previous section. The action will apply to all checked projects.  
+
+.. image:: img/projectlist.png
+   :align: center
    
-   
-* **Make project Private**
-  Restrict access to viewing the project to only yourself.
+When mouse over the action buttons on the project list page, it will show a pop up info for the action buttons. There is a special action button for multiple projects, "Compare Selected Projects Taxonomy Classification (HeatMap)" which will draw heatmaps of taxonomy profiling results for multiple projects using `MetaComp <https://github.com/seninp-bioinfo/MetaComp>`_.  
+
+.. image:: img/projectlistactions.png
+   :align: center
    
 Other Methods of Accessing EDGE
 ===============================
