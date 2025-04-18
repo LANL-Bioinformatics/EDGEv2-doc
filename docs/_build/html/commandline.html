@@ -1,0 +1,830 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4. Command Line User Interface &mdash; EDGE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/edge.ico"/>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="EDGE 1.0 documentation" href="index.html" />
+    <link rel="next" title="5. Graphic User Interface" href="gui.html" />
+    <link rel="prev" title="3. Installation" href="installation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gui.html" title="5. Graphic User Interface"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="3. Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">EDGE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="command-line-user-interface">
+<h1>4. Command Line User Interface<a class="headerlink" href="#command-line-user-interface" title="Permalink to this headline">¶</a></h1>
+<p>The command line usage is as followings:</p>
+<div class="highlight-python"><div class="highlight"><pre>Usage: perl runPipeline.pl [options] -c config.txt -p &#39;reads1.fastq reads2.fastq&#39; -o out_directory
+Version 1.0
+Input File:
+        -u            Unpaired reads, Single end reads in fastq
+
+        -p            Paired reads in two fastq files and separate by space in quote
+
+        -c            Config File
+Output:
+        -o            Output directory.
+
+Options:
+        -ref          Reference genome file in fasta
+
+        -primer       A pair of Primers sequences in strict fasta format
+
+        -cpu          number of CPUs (default: 8)
+
+        -version      print verison
+</pre></div>
+</div>
+<p>A config file (example in the below section, the <a class="reference internal" href="gui.html"><em>Graphic User Interface (GUI)</em></a> will generate config automatically), reads Files in fastq format, and a output directory are required when run by command line. Based on the configuration file, if all module turn on, edge will run following steps. Each steps contains at least one command line scripts/programs.</p>
+<ol class="arabic simple">
+<li>Data QC</li>
+<li>Host Removal QC</li>
+<li>IDBA Assembling</li>
+<li>Map Reads To Contig</li>
+<li>Map Reads To Reference Genomes</li>
+<li>Taxonomy Classification on All Reads or unMapped to Reference Reads</li>
+<li>Map Contigs To Reference Genomes</li>
+<li>Blast (unMapped)Contigs to nr/nt and virluence proteins</li>
+<li>Variant Analysis</li>
+<li>Contig Annotation</li>
+<li>ProPhage detection</li>
+<li>PCR Assay Validation</li>
+<li>PCR Assay Adjudication</li>
+<li>SNP Phylogeny for selected pathogen</li>
+<li>Generate JBrowse Tracks</li>
+<li>HTML report</li>
+</ol>
+<div class="section" id="config-file">
+<span id="config-example"></span><h2>4.1. Config File<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h2>
+<p>The config file is a text file with following information. If you are going to do host removal, you need to <a class="reference internal" href="database.html#build-host-index"><em>build host index</em></a> for it and change the fasta file path in the config file.</p>
+<div class="highlight-python"><div class="highlight"><pre>[Count Fastq]
+DoCountFastq=auto
+
+[Quality Trim and Filter]
+## boolean, 1=yes, 0=no
+DoQC=1
+##Targets quality level for trimming
+q=5
+##Trimmed sequence length will have at least minimum length
+min_L=50
+##Average quality cutoff
+avg_q=0
+##&quot;N&quot; base cutoff.  Trimmed read has more than this number of continuous base &quot;N&quot; will be discarded.
+n=1
+##Low complexity filter ratio, Maximum fraction of mono-/di-nucleotide sequence
+lc=0.85
+## Trim reads with adapters or contamination sequences
+adapter=/PATH/adapter.fasta
+## phiX filter, boolean, 1=yes, 0=no
+phiX=0
+## Cut # bp from 5 end before quality trimming/filtering
+5end=0
+## Cut # bp from 3 end before quality trimming/filtering
+3end=0
+
+[Host Removal]
+## boolean, 1=yes, 0=no
+DoHostRemoval=1
+## Use more Host=  to remove multiple host reads
+Host=/PATH/all_chromosome.fasta
+similarity=90
+
+[IDBA Assembly]
+## boolean, 1=yes, 0=no
+DoAssembly=1
+idbaOptions=&quot;--pre_correction  --mink 31&quot;
+
+[Reads Mapping To Contigs]
+# Reads mapping to contigs
+DoReadsMappingContigs=auto
+
+[Reads Mapping To Reference]
+# Reads mapping to reference
+DoReadsMappingReference=auto
+bowtieOptions=
+
+[Reads Taxonomy Classification]
+## boolean, 1=yes, 0=no
+DoTaxonomy=1
+## If reference genome exists, only use unmapped reads to do Taxonomy Classification. Turn on AllReads=1 will use all reads instead.
+AllReads=0
+enabledTools=gottcha-genDB-b,gottcha-speDB-b,gottcha-strDB-b,gottcha-genDB-v,gottcha-speDB-v,gottcha-strDB-v,metaphlan,metaphyler-srv,bwa,kraken_mini,metascope
+
+[Contigs Mapping To Reference]
+# Contig mapping to reference
+DoContigMapping=auto
+## identity cutoff
+identity=85
+
+[Variant Analysis]
+DoVariantAnalysis=auto
+
+[Contigs Annotation]
+## boolean, 1=yes, 0=no
+DoAnnotation=1
+# kingdom: Archaea Bacteria Mitochondria Viruses
+kingdom=Bacteria
+
+[ProPhage Detection]
+DoProPhageDetection=1
+
+[SNP Phylogeny]
+DoSNPtree=1
+## Availabe choices are Ecoli, Yersinia, Francisella, Brucella, Bacillus
+SNPdbName=Ecoli
+
+[Primer Validation]
+DoPrimerValidation=1
+maxMismatch=1
+
+[Primer Adjudication]
+## boolean, 1=yes, 0=no
+DoPrimerDesign=0
+## desired primer tm
+tm_opt=59
+tm_min=57
+tm_max=63
+## desired primer length
+len_opt=18
+len_min=20
+len_max=27
+## reject primer having Tm &lt; tm_diff difference with background Tm
+tm_diff=5
+## display # top results for each target
+top=5
+
+[Contig Blast]
+DoBlast=0
+BLAST_nr_DB=/PATH/nr/
+BLAST_nt_DB=/PATH/nt/
+
+[Generate JBrowse Tracks]
+DoJBrowse=1
+
+[HTML Report]
+DoHTMLReport=1
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-run">
+<h2>4.2. Test Run<a class="headerlink" href="#test-run" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>EDGE provide an example data set which is a Ecoli MiSeq dataset and has been subsampled to around 10x fold coverage reads.</div></blockquote>
+<p>In the EDGE home directory,</p>
+<div class="highlight-python"><div class="highlight"><pre>cd testData
+sh runTest.sh
+</pre></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/commandline_screen.png"><img alt="Snapshot from the terminal." src="_images/commandline_screen.png" style="width: 400px;" /></a>
+<p class="caption">Snapshot from the terminal.</p>
+</div>
+<p>see <a class="reference internal" href="output.html"><em>Output</em></a></p>
+</div>
+<div class="section" id="descriptions-of-each-module">
+<h2>4.3. Descriptions of Each module<a class="headerlink" href="#descriptions-of-each-module" title="Permalink to this headline">¶</a></h2>
+<p>Usually each module comes with default parameters and user can see the optional parameters by entering the program name with –h or -help flag without any other arguments.</p>
+<ol class="arabic simple">
+<li><strong>Data QC</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/illumina_fastq_QC.pl  -p &#39;Ecoli_10x.1.fastq Ecoli_10x.2.fastq&#39;  -q 5 -min_L 50 -avg_q 5 -n 0 -lc 0.85 –d QcReads -t 10
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Quality control</li>
+<li>Read filtering</li>
+<li>Read trimming</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Paired-end/Single-end Raw reads in FASTQ format</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>QC.1.trimmed.fastq</li>
+<li>QC.2.trimmed.fastq</li>
+<li>QC.unpaired.trimmed.fastq</li>
+<li>QC.stats.txt</li>
+<li>QC_qc_report.pdf</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><strong>Host Removal QC</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/host_reads_removal_by_mapping.pl  -p &#39;QC.1.trimmed.fastq QC.2.trimmed.fastq&#39; -u QC.unpaired.trimmed.fastq -ref human_chromosomes.fasta -o QcReads -cpu 10
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Read filtering</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Paired-end/Single-end reads in FASTQ format</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>host_clean.1.fastq</li>
+<li>host_clean.2.fastq</li>
+<li>host_clean.mapping.log</li>
+<li>host_clean.unpaired.fastq</li>
+<li>host_clean.stats.txt</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><strong>IDBA Assembling</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example</p>
+<div class="highlight-python"><div class="highlight"><pre>fq2fa --merge host_clean.1.fastq  host_clean.2.fastq  pairedForAssembly.fasta
+idba_ud  --num_threads 10 -o AssemblyBasedAnalysis/idba --pre_correction pairedForAssembly.fasta
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Iterative kmers de novo Assembly, it performs well on isolates as well as metagenomes.  It may not work well on very large genomes.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Paired-end/Single-end reads in FASTA format</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>contig.fa</li>
+<li>scaffold.fa  (input paired end)</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><strong>Map Reads To Contig</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/runReadsToContig.pl  -p &#39;host_clean.1.fastq host_clean.2.fastq&#39; -d AssemblyBasedAnalysis/readsMappingToContig -pre readsToContigs  -ref AssemblyBasedAnalysis/contigs.fa
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Mapping reads to assembled contigs</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Paired-end/Single-end reads in FASTQ format</li>
+<li>Assembled Contigs in Fasta format</li>
+<li>Output Directory</li>
+<li>Output prefix</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>readsToContigs.alnstats.txt</li>
+<li>readsToContigs_coverage.table</li>
+<li>readsToContigs_plots.pdf</li>
+<li>readsToContigs.sort.bam</li>
+<li>readsToContigs.sort.bam.bai</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li><strong>Map Reads To Reference Genomes</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/runReadsToGenome.pl  -p &#39;host_clean.1.fastq host_clean.2.fastq&#39;  -d ReadsBasedAnalysis -pre readsToRef -ref Reference.fna
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Mapping reads to reference genomes</li>
+<li>SNPs/Indels calling</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Paired-end/Single-end reads in FASTQ format</li>
+<li>Reference genomes in Fasta format</li>
+<li>Output Directory</li>
+<li>Output prefix</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>readsToRef.alnstats.txt</li>
+<li>readsToRef_plots.pdf</li>
+<li>readsToRef_refID.coverage</li>
+<li>readsToRef_refID.gap.coords</li>
+<li>readsToRef_refID.window_size_coverage</li>
+<li>readsToRef.ref_windows_gc.txt</li>
+<li>readsToRef.raw.bcf</li>
+<li>readsToRef.sort.bam</li>
+<li>readsToRef.sort.bam.bai</li>
+<li>readsToRef.vcf</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><strong>Taxonomy Classification on All Reads or unMapped to Reference Reads</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/microbial_profiling/microbial_profiling_configure.pl $EDGE_HOME/scripts/microbial_profiling/microbial_profiling.settings.tmpl gottcha-speDB-b &gt; microbial_profiling.settings.ini
+perl $EDGE_HOME/scripts/microbial_profiling/microbial_profiling.pl -o  Taxonomy -s microbial_profiling.settings.ini -c 10 UnmappedReads.fastq
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Taxonomy Classification using multiple tools, including BWA mapping to NCBI Refseq, metaphlan, metaphyler, kraken, GOTTCHA.</li>
+<li>Unify varies output format and generate reports</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Reads in FASTQ format</li>
+<li>Configuration text file (generated by microbial_profiling_configure.pl)</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>Summary EXCEL and text files.</li>
+<li>Heatmaps tools comparison</li>
+<li>Radarchart tools comparison</li>
+<li>Krona and tree-style plots for each tool.</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><strong>Map Contigs To Reference Genomes</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/nucmer_genome_coverage.pl  -e 1 -i 85 –p contigsToRef Reference.fna contigs.fa
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Mapping assembled contigs to reference genomes</li>
+<li>SNPs/Indels calling</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Reference genome in Fasta Format</li>
+<li>Assembled contigs in Fasta Format</li>
+<li>Output prefix</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>contigsToRef_avg_coverage.table</li>
+<li>contigsToRef.delta</li>
+<li>contigsToRef_query_unUsed.fasta</li>
+<li>contigsToRef.snps</li>
+<li>contigsToRef.coords</li>
+<li>contigsToRef.log</li>
+<li>contigsToRef_query_novel_region_coord.txt</li>
+<li>contigsToRef_ref_zero_cov_coord.txt</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="8">
+<li><strong>Blast (unMapped)Contigs to nr/nt and virluence proteins</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>blastx –db nr –query contigsToRef_query_unUsed.fasta -out ContigFasta.nr.blast.out -num_threads 10 -evalue 1e-10 -outfmt &#39;6 std staxids&#39;
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Blast against nr/nt/virulence databases for taxonomy and functional annotations.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Contigs in Fasta format</li>
+<li>NCBI nr/nt databases and virulence database (see X. Pre-Build database)</li>
+<li>Output file name</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>ContigFasta.nr.blast.out</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="9">
+<li><strong>Variant Analysi</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step?      <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/SNP_analysis.pl -genbank Reference.gbk -SNP contigsToRef.snps -format nucmer
+perl $EDGE_HOME/scripts/gap_analysis.pl -genbank Reference.gbk -gap  contigsToRef_ref_zero_cov_coord.txt
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Analyze variants and gaps regions using annotation file.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Reference in GenBank format</li>
+<li>SNPs/INDELs/Gaps files from “Map Contigs To Reference Genomes“</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>contigsToRef.SNPs_report.txt</li>
+<li>contigsToRef.Indels_report.txt</li>
+<li>GapVSReference.report.txt</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="10">
+<li><strong>Contig Annotation</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>prokka --force --prefix PROKKA --outdir Annotation contigs.fa
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>The rapid annotation of prokaryotic genomes.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Assembled Contigs in Fasta format</li>
+<li>Output Directory</li>
+<li>Output prefix</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>It produces GFF3, GBK and SQN files that are ready for editing in Sequin and ultimately submitted to Genbank/DDJB/ENA.</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="11">
+<li><strong>ProPhage detection</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/phageFinder_prepare.pl -o Prophage –p Assembly Annotation/PROKKA.gbk
+$EDGE_HOME/thirdParty/phage_finder_v2.1/bin/phage_finder_v2.1.sh Assembly
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Identify and classify prophages within prokaryotic genomes.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Annotated Contigs GenBank file</li>
+<li>Output Directory</li>
+<li>Output prefix</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>phageFinder_summary.txt</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="12">
+<li><strong>PCR Assay Validation</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/pcrValidation/validate_primers.pl -ref contigs.fa -primer primers.fa -mismatch 1 -output AssayCheck
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>In silico PCR primer validation by sequence alignment.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Assembled Contigs/Reference in Fasta format</li>
+<li>Output Directory</li>
+<li>Output prefix</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>pcrContigValidation.log</li>
+<li>pcrContigValidation.bam</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="13">
+<li><strong>PCR Assay Adjudication</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/pcrAdjudication/pcrUniquePrimer_v1.2.pl --input contigs.fa  --gff3 PCR.Adjudication.primers.gff3
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Design unique primer pairs for input contigs.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>Assembled Contigs in Fasta format</li>
+<li>Output gff3 file name</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>PCR.Adjudication.primers.gff3</li>
+<li>PCR.Adjudication.primers.txt</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="14">
+<li><strong>SNP Phylogeny for selected pathogen</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/prepare_SNP_phylogeny.pl -o output/SNP_Phylogeny/Ecoli  -map $EDGE_HOME /database/SNPdb/reference.txt -db Ecoli -n output -cpu 10 -p QC.1.trimmed.fastq QC.2.trimmed.fastq -c contigs.fa -s QC.unpaired.trimmed.fastq
+perl $EDGE_HOME/scripts/SNPphy/runSNPphylogeny.pl output/SNP_Phylogeny/Ecoli/SNPphy.ctrl
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Perform SNP identification against selected pathogen reference.</li>
+<li>Build SNP based multiple sequence alignment for all and CDS regions</li>
+<li>Generate Tree file in newick format</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>SNPdb path</li>
+<li>Fastq reads files</li>
+<li>Contig files</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>SNP based phylogentic multiple sequence alignment</li>
+<li>SNP based phylogentic tree in newick format.</li>
+<li>SNP information table</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="15">
+<li><strong>Generate JBrowse Tracks</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/edge2jbrowse_converter.pl --in-ref-fa Reference.fna --in-ref-gff3 Reference.gff --proj_outdir EDGE_project_dir
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Convert several EDGE outputs into JBrowse tracks for visualization for contigs and reference, respectively.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>EDGE project output Directory</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>EDGE post-processed files for JBrowse tracks in the JBrowse directory.</li>
+<li>Tracks configuration files in the JBrowse directory.</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="16">
+<li><strong>HTML Report</strong></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p class="first">Required step? <strong>No</strong></p>
+</li>
+<li><p class="first">Command example:</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/munger/outputMunger_w_temp.pl EDGE_project_dir
+</pre></div>
+</div>
+</li>
+<li><p class="first">What it does</p>
+<ul class="simple">
+<li>Generate statistical numbers and plots in an interactive html report page.</li>
+</ul>
+</li>
+<li><p class="first">Expected input</p>
+<ul class="simple">
+<li>EDGE project output Directory</li>
+</ul>
+</li>
+<li><p class="first">Expected output</p>
+<ul class="simple">
+<li>report.html</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">4. Command Line User Interface</a><ul>
+<li><a class="reference internal" href="#config-file">4.1. Config File</a></li>
+<li><a class="reference internal" href="#test-run">4.2. Test Run</a></li>
+<li><a class="reference internal" href="#descriptions-of-each-module">4.3. Descriptions of Each module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">3. Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gui.html"
+                        title="next chapter">5. Graphic User Interface</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/commandline.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="gui.html" title="5. Graphic User Interface"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="3. Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">EDGE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2014, EDGE development team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

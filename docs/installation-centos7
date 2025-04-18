@@ -1,0 +1,33 @@
+Installation - CentOS 7
+#######################
+
+Installing the EDGE platform on CentOS 7
+========================================
+
+1. Perform a fresh installation from media of CentOS 7.  This guide assumes the standard DVD ISO will be used, and a network connection will be available for updates.
+
+  Installation images can be obtained at `The CentOS Project <https://www.centos.org/download/>`_
+
+2. In the Software Selection menu, select "GNOME Desktop" and the "Development Tools" package.
+
+3. Partitioning your system appropriately is left to the user.  In most cases, the EDGE server is a dedicated unit, so an automatic guided repartitioning is advised.
+
+4. Disable kdump.
+
+5. Provide a meaningful hostname for your machine under the Network & Host Name section of the installer.  Remember the NMRC Guidance: "You built it, you name it."
+
+6. Click Begin Installation in the lower right corner to start the installation.
+
+7. Provide a root password for the machine, and write it down somewhere.
+
+8. Create another user from the User Settings menu, with the username edge and the full name EDGE Administrator.  Select "Make this user an Administrator."  This will be the user that runs the services that compose EDGE.  Give the user a strong password, and write that down too.
+
+9. Allow the machine to reboot:
+
+You'll be asked to agree to the CentOS license agreement.  Please read it fully, it affects the way that you interact with your system and your data.
+
+By default, any network connection plugged in will attempt to autoconfigure by DHCP.  If your facility requires the use of static addressing, you can configure the network connections by clicking on the network icon on the top right of the screen.
+
+10. Open a terminal window from the menu drop-down in the top left corner.  (The following steps can also be performed through an SSH terminal connection to your server.  EDGE works perfectly well headless with just a network connection.) 
+
+11. Follow instructions for CentOS 7 under System requirements to install OS specific software and updates.

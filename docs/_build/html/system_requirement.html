@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. System requirements &mdash; EDGE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/edge.ico"/>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="EDGE 1.0 documentation" href="index.html" />
+    <link rel="next" title="3. Installation" href="installation.html" />
+    <link rel="prev" title="1. Introduction" href="introduction.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="3. Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="1. Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">EDGE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="system-requirements">
+<span id="sys-requirement"></span><h1>2. System requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h1>
+<p>The current version of EDGE pipeline has been extensively tested on a Linux Server with Ubuntu 14.04 and Centos 6.5 and 7.0 operating system and will work on 64bit Linux environments. Perl v5.8 or above is required. Python 2.7 is required. Due to the involvement of several memory/time consuming steps, it requires at least 16Gb memory and at least 8 computing CPUs. A higher computer spec is recommended: 128Gb memory and 16 computing CPUs.</p>
+<p>Please assure that your system has the essential software building packages installed properly before running the installing script.</p>
+<p>The following are required installed by system administrator.</p>
+<div class="section" id="ubuntu-14-04">
+<h2>2.1. Ubuntu 14.04<a class="headerlink" href="#ubuntu-14-04" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="https://design.ubuntu.com/wp-content/uploads/ubuntu-logo14.png"><img alt="https://design.ubuntu.com/wp-content/uploads/ubuntu-logo14.png" src="https://design.ubuntu.com/wp-content/uploads/ubuntu-logo14.png" style="width: 200px;" /></a>
+<ol class="arabic">
+<li><p class="first">Install build essential, libraries and dependancies:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install build-essential
+sudo apt-get install libreadline5-dev
+sudo apt-get install libx11-dev
+sudo apt-get install libxt-dev
+sudo apt-get install libncurses5-dev
+sudo apt-get install gfortran
+sudo apt-get install inkscape
+sudo apt-get install libwww-perl
+sudo apt-get install zlib1g-dev zip unzip
+sudo apt-get install libpng-dev
+sudo apt-get install cpanminus
+sudo apt-get install firefox
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install python packages for Metaphlan (Taxonomy assignment software):</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install python-numpy python-matplotlib python-scipy libpython2.7-stdlib
+sudo apt-get install ipython ipython-notebook python-pandas python-sympy python-nose
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install BioPerl:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install bioperl
+    or
+sudo cpan -i -f CJFIELDS/BioPerl-1.6.923.tar.gz
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="centos-6">
+<h2>2.2. CentOS 6<a class="headerlink" href="#centos-6" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="https://scottlinux.com/wp-content/uploads/2011/07/centos6.png"><img alt="https://scottlinux.com/wp-content/uploads/2011/07/centos6.png" src="https://scottlinux.com/wp-content/uploads/2011/07/centos6.png" style="width: 200px;" /></a>
+<ol class="arabic">
+<li><p class="first">Install dependancies using yum:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo yum -y install perl-CPAN expat-devel gcc gcc-c++ kernel-devel inkscape perl-JSON
+sudo yum -y install libXt-devel.x86_64 gcc-gfortran.x86_64 readline-devel.x86_64
+sudo yum -y install git zip zlib-devel perl-ExtUtils-Embed perl-CGI firefox curl wget
+sudo yum -y install perl-App-cpanminus libX11-devel.x86_64 unzip
+sudo yum -y install perl-libwww-perl fuse-exfat exfat–utils
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install Bioperl using CPAN:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo cpan -i -f CJFIELDS/BioPerl-1.6.923.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install Anaconda python distribution (<a class="reference external" href="https://store.continuum.io/cshop/anaconda/">https://store.continuum.io/cshop/anaconda/</a>)
+The installation is interactive. Type in /opt/apps/anaconda when the script asks for the location to install python.:</p>
+<div class="highlight-python"><div class="highlight"><pre>bash Anaconda-2.0.1-Linux-x86.sh
+ln -s /opt/apps/anaconda/bin/python /opt/apps/edge/bin/
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div>You have to symlink anaconda python to edge/bin. So system will use your python over the system’s.</div></blockquote>
+</div>
+<div class="section" id="centos-7">
+<h2>2.3. CentOS 7<a class="headerlink" href="#centos-7" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="https://scottlinux.com/wp-content/uploads/2010/07/centos.png"><img alt="https://scottlinux.com/wp-content/uploads/2010/07/centos.png" src="https://scottlinux.com/wp-content/uploads/2010/07/centos.png" style="width: 200px;" /></a>
+<p>EPEL Repo</p>
+<ol class="arabic">
+<li><p class="first">Install libraries and dependancies by yum:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo yum -y install libX11-devel readline-devel libXt-devel ncurses-devel inkscape
+sudo yum -y install freetype freetype-devel zlib zlib-devel perl-App-cpanminus git
+sudo yum -y install blas-devel atlas-devel lapack-devel  libpng12 libpng12-devel
+sudo yum -y install perl-XML-Simple perl-JSON expat expat-devel perl-Test-Most
+sudo yum -y install python-pip numpy numpy-f2py scipy
+</pre></div>
+</div>
+</li>
+<li><p class="first">Upgrade python packages by pip:</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install --upgrade six
+pip install --upgrade scipy
+pip install --upgrade matplotlib
+</pre></div>
+</div>
+</li>
+<li><p class="first">Detect outdated CPAN modules:</p>
+<div class="highlight-python"><div class="highlight"><pre>cpanm App::cpanoutdated
+cpan-outdated -p | cpanm
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install perl modules by cpanm:</p>
+<div class="highlight-python"><div class="highlight"><pre>cpanm Algorithm::Munkres Archive::Tar Array::Compare Clone CGI Convert::Binary::C GD
+cpanm GraphViz HTML::Template HTML::TableExtract List::MoreUtils PostScript::TextBlock
+cpanm SOAP::Lite SVG SVG::Graph Set::Scalar Sort::Naturally Spreadsheet::ParseExcel
+cpanm XML::Parser::PerlSAX XML::SAX XML::SAX::Writer XML::Simple XML::Twig XML::Writer
+cpanm Graph Time::Piece Tk BioPerl
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. System requirements</a><ul>
+<li><a class="reference internal" href="#ubuntu-14-04">2.1. Ubuntu 14.04</a></li>
+<li><a class="reference internal" href="#centos-6">2.2. CentOS 6</a></li>
+<li><a class="reference internal" href="#centos-7">2.3. CentOS 7</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter">1. Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">3. Installation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/system_requirement.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="3. Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="1. Introduction"
+             >previous</a> |</li>
+        <li><a href="index.html">EDGE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2014, EDGE development team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

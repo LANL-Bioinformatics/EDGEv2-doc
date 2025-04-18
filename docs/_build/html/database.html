@@ -1,0 +1,1001 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. Databases &mdash; EDGE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/edge.ico"/>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="EDGE 1.0 documentation" href="index.html" />
+    <link rel="next" title="8. Third Party Tools" href="third_party.html" />
+    <link rel="prev" title="6. Output" href="output.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="third_party.html" title="8. Third Party Tools"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="output.html" title="6. Output"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">EDGE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="databases">
+<h1>7. Databases<a class="headerlink" href="#databases" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="edge-provided-database">
+<h2>7.1. EDGE provided database<a class="headerlink" href="#edge-provided-database" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mvirdb">
+<h3>7.1.1. MvirDB<a class="headerlink" href="#mvirdb" title="Permalink to this headline">¶</a></h3>
+<p>A Microbial database of protein toxins, virulence factors and antibiotic resistance genes for bio-defence applications</p>
+<ul class="simple">
+<li>paper: <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=17090593">http://www.ncbi.nlm.nih.gov/pubmed/?term=17090593</a></li>
+<li>website: <a class="reference external" href="http://mvirdb.llnl.gov/">http://mvirdb.llnl.gov/</a></li>
+</ul>
+</div>
+<div class="section" id="ncbi-refseq">
+<h3>7.1.2. NCBI Refseq<a class="headerlink" href="#ncbi-refseq" title="Permalink to this headline">¶</a></h3>
+<p>EDGE prebuilt the blast db and bwa_index of NCBI RefSeq genomes.</p>
+<ul class="simple">
+<li>Bacteria: <a class="reference external" href="ftp://ftp.ncbi.nih.gov/genomes/Bacteria/all.fna.tar.gz">ftp://ftp.ncbi.nih.gov/genomes/Bacteria/all.fna.tar.gz</a><ul>
+<li>Version: NCBI 2014 Oct 7</li>
+<li>2786 genomes</li>
+</ul>
+</li>
+<li>Virus:  <a class="reference external" href="ftp://ftp.ncbi.nih.gov/genomes/Viruses/all.fna.tar.gz">ftp://ftp.ncbi.nih.gov/genomes/Viruses/all.fna.tar.gz</a><ul>
+<li>Version: NCBI 2014 Oct 7</li>
+<li>5591 genomes</li>
+</ul>
+</li>
+</ul>
+<p>see $EDGE_HOME/database/bwa_index/id_mapping.txt for all gi/accession to genome name lookup table.</p>
+</div>
+<div class="section" id="krona-taxonomy">
+<h3>7.1.3. Krona taxonomy<a class="headerlink" href="#krona-taxonomy" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>paper: <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=21961884">http://www.ncbi.nlm.nih.gov/pubmed/?term=21961884</a></li>
+<li>website: <a class="reference external" href="http://sourceforge.net/p/krona/home/krona/">http://sourceforge.net/p/krona/home/krona/</a></li>
+</ul>
+<div class="section" id="update-krona-taxonomy-db">
+<h4>7.1.3.1. Update Krona taxonomy db<a class="headerlink" href="#update-krona-taxonomy-db" title="Permalink to this headline">¶</a></h4>
+<p>Download these files from <a class="reference external" href="ftp://ftp.ncbi.nih.gov/pub/taxonomy">ftp://ftp.ncbi.nih.gov/pub/taxonomy</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_nucl.dmp.gz
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/gi_taxid_prot.dmp.gz
+wget ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
+</pre></div>
+</div>
+<p>Transfer the files to the taxonomy folder in the standalone KronaTools installation and run:</p>
+<div class="highlight-python"><div class="highlight"><pre>$EDGE_HOME/thirdParty/KronaTools-2.4/updateTaxonomy.sh --local.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="metaphlan-database">
+<h3>7.1.4. Metaphlan database<a class="headerlink" href="#metaphlan-database" title="Permalink to this headline">¶</a></h3>
+<p>MetaPhlAn relies on unique clade-specific marker genes identified from 3,000 reference genomes.</p>
+<ul class="simple">
+<li>paper: <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413">http://www.ncbi.nlm.nih.gov/pubmed/?term=22688413</a></li>
+<li>website: <a class="reference external" href="http://huttenhower.sph.harvard.edu/metaphlan">http://huttenhower.sph.harvard.edu/metaphlan</a></li>
+</ul>
+</div>
+<div class="section" id="human-genome">
+<h3>7.1.5. Human Genome<a class="headerlink" href="#human-genome" title="Permalink to this headline">¶</a></h3>
+<p>The bwa index is prebuilt in the EDGE.
+The human hs_ref_GRCh38 sequences from NCBI ftp site.</p>
+<ul class="simple">
+<li>website <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/">ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/</a></li>
+</ul>
+</div>
+<div class="section" id="minikraken-db">
+<h3>7.1.6. MiniKraken DB<a class="headerlink" href="#minikraken-db" title="Permalink to this headline">¶</a></h3>
+<p>Kraken is a system for assigning taxonomic labels to short DNA sequences, usually obtained through metagenomic studies. MiniKraken is a pre-built 4 GB database constructed from complete bacterial, archaeal, and viral genomes in RefSeq (as of Mar. 30, 2014).</p>
+<ul class="simple">
+<li>paper: <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807">http://www.ncbi.nlm.nih.gov/pubmed/?term=24580807</a></li>
+<li>website: <a class="reference external" href="http://ccb.jhu.edu/software/kraken/">http://ccb.jhu.edu/software/kraken/</a></li>
+</ul>
+</div>
+<div class="section" id="gottcha-db">
+<h3>7.1.7. GOTTCHA DB<a class="headerlink" href="#gottcha-db" title="Permalink to this headline">¶</a></h3>
+<p>A novel, annotation-independent and signature-based metagenomic taxonomic profiling tool. (manuscript in submission)</p>
+<ul class="simple">
+<li>website: <a class="reference external" href="https://github.com/LANL-Bioinformatics/GOTTCHA">https://github.com/LANL-Bioinformatics/GOTTCHA</a></li>
+</ul>
+</div>
+<div class="section" id="snpdb">
+<h3>7.1.8. SNPdb<a class="headerlink" href="#snpdb" title="Permalink to this headline">¶</a></h3>
+<p>SNP database based on whole genome comparision. Current available db are <a class="reference internal" href="#snp-db"><em>Ecoli, Yersinia, Francisella, Brucella, Bacillus</em></a> .</p>
+</div>
+<div class="section" id="invertebrate-vectors-of-human-pathogens">
+<h3>7.1.9. Invertebrate Vectors of Human Pathogens<a class="headerlink" href="#invertebrate-vectors-of-human-pathogens" title="Permalink to this headline">¶</a></h3>
+<p>The bwa index is prebuilt in the EDGE.</p>
+<ul class="simple">
+<li>paper: <a class="reference external" href="http://www.ncbi.nlm.nih.gov/pubmed/?term=22135296">http://www.ncbi.nlm.nih.gov/pubmed/?term=22135296</a></li>
+<li>website: <a class="reference external" href="https://www.vectorbase.org">https://www.vectorbase.org</a></li>
+</ul>
+<p>Version: 2014 July 24</p>
+</div>
+<div class="section" id="other-optional-database">
+<h3>7.1.10. Other optional database<a class="headerlink" href="#other-optional-database" title="Permalink to this headline">¶</a></h3>
+<p>Not in the EDGE but you can download.</p>
+<ul class="simple">
+<li>NCBI nr/nt blastDB: <a class="reference external" href="ftp://ftp.ncbi.nih.gov/blast/db/">ftp://ftp.ncbi.nih.gov/blast/db/</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="build-bwa-index">
+<span id="build-host-index"></span><h2>7.2. Build bwa index<a class="headerlink" href="#build-bwa-index" title="Permalink to this headline">¶</a></h2>
+<p>Here take human genome as example.</p>
+<ol class="arabic simple">
+<li>Download the human hs_ref_GRCh38 sequences from NCBI ftp site.</li>
+</ol>
+<blockquote>
+<div><p>Go to <a class="reference external" href="ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/">ftp://ftp.ncbi.nlm.nih.gov/genomes/H_sapiens/Assembled_chromosomes/seq/</a>
+Or use a provided perl script in $EDGE_HOME/scripts/</p>
+<div class="highlight-python"><div class="highlight"><pre>perl $EDGE_HOME/scripts/download_human_refseq_genome.pl output_dir
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first">Gunzip the downloaded fasta file and concatenate them into one human genome multifasta file:</p>
+<div class="highlight-python"><div class="highlight"><pre>gunzip hs_ref_GRCh38.*.fa.gz
+cat hs_ref_GRCh38.*.fa &gt; human_ref_GRCh38.all.fasta
+</pre></div>
+</div>
+</li>
+<li><p class="first">Use the installed bwa to build the index:</p>
+<div class="highlight-python"><div class="highlight"><pre>$EDGE_HOME/bin/bwa index human_ref_GRCh38.all.fasta
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div>Now, you can configure the config file with &#8220;host=/path/human_ref_GRCh38.all.fasta&#8221; for host removal step.</div></blockquote>
+</div>
+<div class="section" id="snp-database-genomes">
+<span id="snp-db"></span><h2>7.3. SNP database genomes<a class="headerlink" href="#snp-database-genomes" title="Permalink to this headline">¶</a></h2>
+<p>SNP database were pre-built from the below genomes.</p>
+<div class="section" id="ecoli-genomes">
+<h3>7.3.1. Ecoli Genomes<a class="headerlink" href="#ecoli-genomes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="52%" />
+<col width="34%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Ecoli_042</td>
+<td>Escherichia coli 042, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387605479">http://www.ncbi.nlm.nih.gov/nuccore/387605479</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_11128</td>
+<td>Escherichia coli O111:H- str. 11128, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/260866153">http://www.ncbi.nlm.nih.gov/nuccore/260866153</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_11368</td>
+<td>Escherichia coli O26:H11 str. 11368 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/260853213">http://www.ncbi.nlm.nih.gov/nuccore/260853213</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_12009</td>
+<td>Escherichia coli O103:H2 str. 12009, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/260842239">http://www.ncbi.nlm.nih.gov/nuccore/260842239</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_2009EL2050</td>
+<td>Escherichia coli O104:H4 str. 2009EL-2050 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/410480139">http://www.ncbi.nlm.nih.gov/nuccore/410480139</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_2009EL2071</td>
+<td>Escherichia coli O104:H4 str. 2009EL-2071 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/407466711">http://www.ncbi.nlm.nih.gov/nuccore/407466711</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_2011C3493</td>
+<td>Escherichia coli O104:H4 str. 2011C-3493 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/407479587">http://www.ncbi.nlm.nih.gov/nuccore/407479587</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_536</td>
+<td>Escherichia coli 536, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/110640213">http://www.ncbi.nlm.nih.gov/nuccore/110640213</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_55989</td>
+<td>Escherichia coli 55989 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218693476">http://www.ncbi.nlm.nih.gov/nuccore/218693476</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_ABU_83972</td>
+<td>Escherichia coli ABU 83972 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386637352">http://www.ncbi.nlm.nih.gov/nuccore/386637352</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_APEC_O1</td>
+<td>Escherichia coli APEC O1 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/117622295">http://www.ncbi.nlm.nih.gov/nuccore/117622295</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_ATCC_8739</td>
+<td>Escherichia coli ATCC 8739 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/170018061">http://www.ncbi.nlm.nih.gov/nuccore/170018061</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_BL21_DE3</td>
+<td>Escherichia coli BL21(DE3) chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387825439">http://www.ncbi.nlm.nih.gov/nuccore/387825439</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_BW2952</td>
+<td>Escherichia coli BW2952 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/238899406">http://www.ncbi.nlm.nih.gov/nuccore/238899406</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_CB9615</td>
+<td>Escherichia coli O55:H7 str. CB9615 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/291280824">http://www.ncbi.nlm.nih.gov/nuccore/291280824</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_CE10</td>
+<td>Escherichia coli O7:K1 str. CE10 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386622414">http://www.ncbi.nlm.nih.gov/nuccore/386622414</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_CFT073</td>
+<td>Escherichia coli CFT073 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/26245917">http://www.ncbi.nlm.nih.gov/nuccore/26245917</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_DH1</td>
+<td>Escherichia coli DH1, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387619774">http://www.ncbi.nlm.nih.gov/nuccore/387619774</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_Di14</td>
+<td>Escherichia coli str. &#8216;clone D i14&#8217; chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386632422">http://www.ncbi.nlm.nih.gov/nuccore/386632422</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_Di2</td>
+<td>Escherichia coli str. &#8216;clone D i2&#8217; chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386627502">http://www.ncbi.nlm.nih.gov/nuccore/386627502</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_E2348_69</td>
+<td>Escherichia coli O127:H6 str. E2348/69 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/215485161">http://www.ncbi.nlm.nih.gov/nuccore/215485161</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_E24377A</td>
+<td>Escherichia coli E24377A chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/157154711">http://www.ncbi.nlm.nih.gov/nuccore/157154711</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_EC4115</td>
+<td>Escherichia coli O157:H7 str. EC4115 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/209395693">http://www.ncbi.nlm.nih.gov/nuccore/209395693</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_ED1a</td>
+<td>Escherichia coli ED1a chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218687878">http://www.ncbi.nlm.nih.gov/nuccore/218687878</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_EDL933</td>
+<td>Escherichia coli O157:H7 str. EDL933 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/16445223">http://www.ncbi.nlm.nih.gov/nuccore/16445223</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_ETEC_H10407</td>
+<td>Escherichia coli ETEC H10407, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387610477">http://www.ncbi.nlm.nih.gov/nuccore/387610477</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_HS</td>
+<td>Escherichia coli HS, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/157159467">http://www.ncbi.nlm.nih.gov/nuccore/157159467</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_IAI1</td>
+<td>Escherichia coli IAI1 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218552585">http://www.ncbi.nlm.nih.gov/nuccore/218552585</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_IAI39</td>
+<td>Escherichia coli IAI39 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218698419">http://www.ncbi.nlm.nih.gov/nuccore/218698419</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_IHE3034</td>
+<td>Escherichia coli IHE3034 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386597751">http://www.ncbi.nlm.nih.gov/nuccore/386597751</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_K12_DH10B</td>
+<td>Escherichia coli str. K-12 substr. DH10B chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/170079663">http://www.ncbi.nlm.nih.gov/nuccore/170079663</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_K12_MG1655</td>
+<td>Escherichia coli str. K-12 substr. MG1655 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/49175990">http://www.ncbi.nlm.nih.gov/nuccore/49175990</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_K12_W3110</td>
+<td>Escherichia coli str. K-12 substr. W3110, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/388476123">http://www.ncbi.nlm.nih.gov/nuccore/388476123</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_KO11FL</td>
+<td>Escherichia coli KO11FL chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386698504">http://www.ncbi.nlm.nih.gov/nuccore/386698504</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_LF82</td>
+<td>Escherichia coli LF82, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/222154829">http://www.ncbi.nlm.nih.gov/nuccore/222154829</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_NA114</td>
+<td>Escherichia coli NA114 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386617516">http://www.ncbi.nlm.nih.gov/nuccore/386617516</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_NRG_857C</td>
+<td>Escherichia coli O83:H1 str. NRG 857C chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387615344">http://www.ncbi.nlm.nih.gov/nuccore/387615344</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_P12b</td>
+<td>Escherichia coli P12b chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386703215">http://www.ncbi.nlm.nih.gov/nuccore/386703215</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_REL606</td>
+<td>Escherichia coli B str. REL606 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/254160123">http://www.ncbi.nlm.nih.gov/nuccore/254160123</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_RM12579</td>
+<td>Escherichia coli O55:H7 str. RM12579 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387504934">http://www.ncbi.nlm.nih.gov/nuccore/387504934</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_S88</td>
+<td>Escherichia coli S88 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218556939">http://www.ncbi.nlm.nih.gov/nuccore/218556939</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_SE11</td>
+<td>Escherichia coli O157:H7 str. Sakai chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/15829254">http://www.ncbi.nlm.nih.gov/nuccore/15829254</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_SE15</td>
+<td>Escherichia coli SE11 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/209917191">http://www.ncbi.nlm.nih.gov/nuccore/209917191</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_SMS35</td>
+<td>Escherichia coli SE15, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387828053">http://www.ncbi.nlm.nih.gov/nuccore/387828053</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_Sakai</td>
+<td>Escherichia coli SMS-3-5 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/170679574">http://www.ncbi.nlm.nih.gov/nuccore/170679574</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_TW14359</td>
+<td>Escherichia coli O157:H7 str. TW14359 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/254791136">http://www.ncbi.nlm.nih.gov/nuccore/254791136</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_UM146</td>
+<td>Escherichia coli UM146 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386602643">http://www.ncbi.nlm.nih.gov/nuccore/386602643</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_UMN026</td>
+<td>Escherichia coli UMN026 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218703261">http://www.ncbi.nlm.nih.gov/nuccore/218703261</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_UMNK88</td>
+<td>Escherichia coli UMNK88 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386612163">http://www.ncbi.nlm.nih.gov/nuccore/386612163</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_UTI89</td>
+<td>Escherichia coli UTI89 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/91209055">http://www.ncbi.nlm.nih.gov/nuccore/91209055</a></td>
+</tr>
+<tr class="row-even"><td>Ecoli_W</td>
+<td>Escherichia coli W chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386707734">http://www.ncbi.nlm.nih.gov/nuccore/386707734</a></td>
+</tr>
+<tr class="row-odd"><td>Ecoli_Xuzhou21</td>
+<td>Escherichia coli Xuzhou21 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/387880559">http://www.ncbi.nlm.nih.gov/nuccore/387880559</a></td>
+</tr>
+<tr class="row-even"><td>Sboydii_CDC_3083_94</td>
+<td>Shigella boydii CDC 3083-94 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/187730020">http://www.ncbi.nlm.nih.gov/nuccore/187730020</a></td>
+</tr>
+<tr class="row-odd"><td>Sboydii_Sb227</td>
+<td>Shigella boydii Sb227 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/82542618">http://www.ncbi.nlm.nih.gov/nuccore/82542618</a></td>
+</tr>
+<tr class="row-even"><td>Sdysenteriae_Sd197</td>
+<td>Shigella dysenteriae Sd197, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/82775382">http://www.ncbi.nlm.nih.gov/nuccore/82775382</a></td>
+</tr>
+<tr class="row-odd"><td>Sflexneri_2002017</td>
+<td>Shigella flexneri 2002017 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/384541581">http://www.ncbi.nlm.nih.gov/nuccore/384541581</a></td>
+</tr>
+<tr class="row-even"><td>Sflexneri_2a_2457T</td>
+<td>Shigella flexneri 2a str. 2457T, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/30061571">http://www.ncbi.nlm.nih.gov/nuccore/30061571</a></td>
+</tr>
+<tr class="row-odd"><td>Sflexneri_2a_301</td>
+<td>Shigella flexneri 2a str. 301 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/344915202">http://www.ncbi.nlm.nih.gov/nuccore/344915202</a></td>
+</tr>
+<tr class="row-even"><td>Sflexneri_5_8401</td>
+<td>Shigella flexneri 5 str. 8401 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/110804074">http://www.ncbi.nlm.nih.gov/nuccore/110804074</a></td>
+</tr>
+<tr class="row-odd"><td>Ssonnei_53G</td>
+<td>Shigella sonnei 53G, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/377520096">http://www.ncbi.nlm.nih.gov/nuccore/377520096</a></td>
+</tr>
+<tr class="row-even"><td>Ssonnei_Ss046</td>
+<td>Shigella sonnei Ss046 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/74310614">http://www.ncbi.nlm.nih.gov/nuccore/74310614</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="yersinia-genomes">
+<h3>7.3.2. Yersinia Genomes<a class="headerlink" href="#yersinia-genomes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="51%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Ypestis_A1122</td>
+<td>Yersinia pestis A1122 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/384137007">http://www.ncbi.nlm.nih.gov/nuccore/384137007</a></td>
+</tr>
+<tr class="row-odd"><td>Ypestis_Angola</td>
+<td>Yersinia pestis Angola chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/162418099">http://www.ncbi.nlm.nih.gov/nuccore/162418099</a></td>
+</tr>
+<tr class="row-even"><td>Ypestis_Antiqua</td>
+<td>Yersinia pestis Antiqua chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/108805998">http://www.ncbi.nlm.nih.gov/nuccore/108805998</a></td>
+</tr>
+<tr class="row-odd"><td>Ypestis_CO92</td>
+<td>Yersinia pestis CO92 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/16120353">http://www.ncbi.nlm.nih.gov/nuccore/16120353</a></td>
+</tr>
+<tr class="row-even"><td>Ypestis_D106004</td>
+<td>Yersinia pestis D106004 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/384120592">http://www.ncbi.nlm.nih.gov/nuccore/384120592</a></td>
+</tr>
+<tr class="row-odd"><td>Ypestis_D182038</td>
+<td>Yersinia pestis D182038 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/384124469">http://www.ncbi.nlm.nih.gov/nuccore/384124469</a></td>
+</tr>
+<tr class="row-even"><td>Ypestis_KIM_10</td>
+<td>Yersinia pestis KIM 10 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/22123922">http://www.ncbi.nlm.nih.gov/nuccore/22123922</a></td>
+</tr>
+<tr class="row-odd"><td>Ypestis_Medievalis_Harbin_35</td>
+<td>Yersinia pestis biovar Medievalis str. Harbin 35 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/384412706">http://www.ncbi.nlm.nih.gov/nuccore/384412706</a></td>
+</tr>
+<tr class="row-even"><td>Ypestis_Microtus_91001</td>
+<td>Yersinia pestis biovar Microtus str. 91001 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/45439865">http://www.ncbi.nlm.nih.gov/nuccore/45439865</a></td>
+</tr>
+<tr class="row-odd"><td>Ypestis_Nepal516</td>
+<td>Yersinia pestis Nepal516 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/108810166">http://www.ncbi.nlm.nih.gov/nuccore/108810166</a></td>
+</tr>
+<tr class="row-even"><td>Ypestis_Pestoides_F</td>
+<td>Yersinia pestis Pestoides F chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/145597324">http://www.ncbi.nlm.nih.gov/nuccore/145597324</a></td>
+</tr>
+<tr class="row-odd"><td>Ypestis_Z176003</td>
+<td>Yersinia pestis Z176003 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/294502110">http://www.ncbi.nlm.nih.gov/nuccore/294502110</a></td>
+</tr>
+<tr class="row-even"><td>Ypseudotuberculosis_IP_31758</td>
+<td>Yersinia pseudotuberculosis IP 31758 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/153946813">http://www.ncbi.nlm.nih.gov/nuccore/153946813</a></td>
+</tr>
+<tr class="row-odd"><td>Ypseudotuberculosis_IP_32953</td>
+<td>Yersinia pseudotuberculosis IP 32953 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/51594359">http://www.ncbi.nlm.nih.gov/nuccore/51594359</a></td>
+</tr>
+<tr class="row-even"><td>Ypseudotuberculosis_PB1</td>
+<td>Yersinia pseudotuberculosis PB1/+ chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/186893344">http://www.ncbi.nlm.nih.gov/nuccore/186893344</a></td>
+</tr>
+<tr class="row-odd"><td>Ypseudotuberculosis_YPIII</td>
+<td>Yersinia pseudotuberculosis YPIII chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/170022262">http://www.ncbi.nlm.nih.gov/nuccore/170022262</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="francisella-genomes">
+<h3>7.3.3. Francisella Genomes<a class="headerlink" href="#francisella-genomes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="51%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Fnovicida_U112</td>
+<td>Francisella novicida U112 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/118496615">http://www.ncbi.nlm.nih.gov/nuccore/118496615</a></td>
+</tr>
+<tr class="row-odd"><td>Ftularensis_holarctica_F92</td>
+<td>Francisella tularensis subsp. holarctica F92 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/423049750">http://www.ncbi.nlm.nih.gov/nuccore/423049750</a></td>
+</tr>
+<tr class="row-even"><td>Ftularensis_holarctica_FSC200</td>
+<td>Francisella tularensis subsp. holarctica FSC200 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/422937995">http://www.ncbi.nlm.nih.gov/nuccore/422937995</a></td>
+</tr>
+<tr class="row-odd"><td>Ftularensis_holarctica_FTNF00200</td>
+<td>Francisella tularensis subsp. holarctica FTNF002-00 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/156501369">http://www.ncbi.nlm.nih.gov/nuccore/156501369</a></td>
+</tr>
+<tr class="row-even"><td>Ftularensis_holarctica_LVS</td>
+<td>Francisella tularensis subsp. holarctica LVS chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/89255449">http://www.ncbi.nlm.nih.gov/nuccore/89255449</a></td>
+</tr>
+<tr class="row-odd"><td>Ftularensis_holarctica_OSU18</td>
+<td>Francisella tularensis subsp. holarctica OSU18 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/115313981">http://www.ncbi.nlm.nih.gov/nuccore/115313981</a></td>
+</tr>
+<tr class="row-even"><td>Ftularensis_mediasiatica_FSC147</td>
+<td>Francisella tularensis subsp. mediasiatica FSC147 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/187930913">http://www.ncbi.nlm.nih.gov/nuccore/187930913</a></td>
+</tr>
+<tr class="row-odd"><td>Ftularensis_TIGB03</td>
+<td>Francisella tularensis TIGB03 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/379716390">http://www.ncbi.nlm.nih.gov/nuccore/379716390</a></td>
+</tr>
+<tr class="row-even"><td>Ftularensis_tularensis_FSC198</td>
+<td>Francisella tularensis subsp. tularensis FSC198 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/110669657">http://www.ncbi.nlm.nih.gov/nuccore/110669657</a></td>
+</tr>
+<tr class="row-odd"><td>Ftularensis_tularensis_NE061598</td>
+<td>Francisella tularensis subsp. tularensis NE061598 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/385793751">http://www.ncbi.nlm.nih.gov/nuccore/385793751</a></td>
+</tr>
+<tr class="row-even"><td>Ftularensis_tularensis_SCHU_S4</td>
+<td>Francisella tularensis subsp. tularensis SCHU S4 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/255961454">http://www.ncbi.nlm.nih.gov/nuccore/255961454</a></td>
+</tr>
+<tr class="row-odd"><td>Ftularensis_tularensis_TI0902</td>
+<td>Francisella tularensis subsp. tularensis TI0902 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/379725073">http://www.ncbi.nlm.nih.gov/nuccore/379725073</a></td>
+</tr>
+<tr class="row-even"><td>Ftularensis_tularensis_WY963418</td>
+<td>Francisella tularensis subsp. tularensis WY96-3418 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/134301169">http://www.ncbi.nlm.nih.gov/nuccore/134301169</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="brucella-genomes">
+<h3>7.3.4. Brucella Genomes<a class="headerlink" href="#brucella-genomes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="36%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Babortus_1_9941</td>
+<td>Brucella abortus bv. 1 str. 9-941</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/58019">http://www.ncbi.nlm.nih.gov/bioproject/58019</a></td>
+</tr>
+<tr class="row-odd"><td>Babortus_A13334</td>
+<td>Brucella abortus A13334</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/83615">http://www.ncbi.nlm.nih.gov/bioproject/83615</a></td>
+</tr>
+<tr class="row-even"><td>Babortus_S19</td>
+<td>Brucella abortus S19</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/58873">http://www.ncbi.nlm.nih.gov/bioproject/58873</a></td>
+</tr>
+<tr class="row-odd"><td>Bcanis_ATCC_23365</td>
+<td>Brucella canis ATCC 23365</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/59009">http://www.ncbi.nlm.nih.gov/bioproject/59009</a></td>
+</tr>
+<tr class="row-even"><td>Bcanis_HSK_A52141</td>
+<td>Brucella canis HSK A52141</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/83613">http://www.ncbi.nlm.nih.gov/bioproject/83613</a></td>
+</tr>
+<tr class="row-odd"><td>Bceti_TE10759_12</td>
+<td>Brucella ceti TE10759-12</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/229880">http://www.ncbi.nlm.nih.gov/bioproject/229880</a></td>
+</tr>
+<tr class="row-even"><td>Bceti_TE28753_12</td>
+<td>Brucella ceti TE28753-12</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/229879">http://www.ncbi.nlm.nih.gov/bioproject/229879</a></td>
+</tr>
+<tr class="row-odd"><td>Bmelitensis_1_16M</td>
+<td>Brucella melitensis bv. 1 str. 16M</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/200008">http://www.ncbi.nlm.nih.gov/bioproject/200008</a></td>
+</tr>
+<tr class="row-even"><td>Bmelitensis_Abortus_2308</td>
+<td>Brucella melitensis biovar Abortus 2308</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/16203">http://www.ncbi.nlm.nih.gov/bioproject/16203</a></td>
+</tr>
+<tr class="row-odd"><td>Bmelitensis_ATCC_23457</td>
+<td>Brucella melitensis ATCC 23457</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/59241">http://www.ncbi.nlm.nih.gov/bioproject/59241</a></td>
+</tr>
+<tr class="row-even"><td>Bmelitensis_M28</td>
+<td>Brucella melitensis M28</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/158857">http://www.ncbi.nlm.nih.gov/bioproject/158857</a></td>
+</tr>
+<tr class="row-odd"><td>Bmelitensis_M590</td>
+<td>Brucella melitensis M5-90</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/158855">http://www.ncbi.nlm.nih.gov/bioproject/158855</a></td>
+</tr>
+<tr class="row-even"><td>Bmelitensis_NI</td>
+<td>Brucella melitensis NI</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/158853">http://www.ncbi.nlm.nih.gov/bioproject/158853</a></td>
+</tr>
+<tr class="row-odd"><td>Bmicroti_CCM_4915</td>
+<td>Brucella microti CCM 4915</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/59319">http://www.ncbi.nlm.nih.gov/bioproject/59319</a></td>
+</tr>
+<tr class="row-even"><td>Bovis_ATCC_25840</td>
+<td>Brucella ovis ATCC 25840</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/58113">http://www.ncbi.nlm.nih.gov/bioproject/58113</a></td>
+</tr>
+<tr class="row-odd"><td>Bpinnipedialis_B2_94</td>
+<td>Brucella pinnipedialis B2/94</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/71133">http://www.ncbi.nlm.nih.gov/bioproject/71133</a></td>
+</tr>
+<tr class="row-even"><td>Bsuis_1330</td>
+<td>Brucella suis 1330</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/159871">http://www.ncbi.nlm.nih.gov/bioproject/159871</a></td>
+</tr>
+<tr class="row-odd"><td>Bsuis_ATCC_23445</td>
+<td>Brucella suis ATCC 23445</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/59015">http://www.ncbi.nlm.nih.gov/bioproject/59015</a></td>
+</tr>
+<tr class="row-even"><td>Bsuis_VBI22</td>
+<td>Brucella suis VBI22</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/bioproject/83617">http://www.ncbi.nlm.nih.gov/bioproject/83617</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bacillus-genomes">
+<h3>7.3.5. Bacillus Genomes<a class="headerlink" href="#bacillus-genomes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="51%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Banthracis_A0248</td>
+<td>Bacillus anthracis str. A0248, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/229599883">http://www.ncbi.nlm.nih.gov/nuccore/229599883</a></td>
+</tr>
+<tr class="row-odd"><td>Banthracis_Ames</td>
+<td>Bacillus anthracis str. &#8216;Ames Ancestor&#8217; chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/50196905">http://www.ncbi.nlm.nih.gov/nuccore/50196905</a></td>
+</tr>
+<tr class="row-even"><td>Banthracis_Ames_Ancestor</td>
+<td>Bacillus anthracis str. Ames chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/30260195">http://www.ncbi.nlm.nih.gov/nuccore/30260195</a></td>
+</tr>
+<tr class="row-odd"><td>Banthracis_CDC_684</td>
+<td>Bacillus anthracis str. CDC 684 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/227812678">http://www.ncbi.nlm.nih.gov/nuccore/227812678</a></td>
+</tr>
+<tr class="row-even"><td>Banthracis_H9401</td>
+<td>Bacillus anthracis str. H9401 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/386733873">http://www.ncbi.nlm.nih.gov/nuccore/386733873</a></td>
+</tr>
+<tr class="row-odd"><td>Banthracis_Sterne</td>
+<td>Bacillus anthracis str. Sterne chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/49183039">http://www.ncbi.nlm.nih.gov/nuccore/49183039</a></td>
+</tr>
+<tr class="row-even"><td>Bcereus_03BB102</td>
+<td>Bacillus cereus 03BB102, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/225862057">http://www.ncbi.nlm.nih.gov/nuccore/225862057</a></td>
+</tr>
+<tr class="row-odd"><td>Bcereus_AH187</td>
+<td>Bacillus cereus AH187 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/217957581">http://www.ncbi.nlm.nih.gov/nuccore/217957581</a></td>
+</tr>
+<tr class="row-even"><td>Bcereus_AH820</td>
+<td>Bacillus cereus AH820 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218901206">http://www.ncbi.nlm.nih.gov/nuccore/218901206</a></td>
+</tr>
+<tr class="row-odd"><td>Bcereus_anthracis_CI</td>
+<td>Bacillus cereus biovar anthracis str. CI chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/301051741">http://www.ncbi.nlm.nih.gov/nuccore/301051741</a></td>
+</tr>
+<tr class="row-even"><td>Bcereus_ATCC_10987</td>
+<td>Bacillus cereus ATCC 10987 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/42779081">http://www.ncbi.nlm.nih.gov/nuccore/42779081</a></td>
+</tr>
+<tr class="row-odd"><td>Bcereus_ATCC_14579</td>
+<td>Bacillus cereus ATCC 14579, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/30018278">http://www.ncbi.nlm.nih.gov/nuccore/30018278</a></td>
+</tr>
+<tr class="row-even"><td>Bcereus_B4264</td>
+<td>Bacillus cereus B4264 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218230750">http://www.ncbi.nlm.nih.gov/nuccore/218230750</a></td>
+</tr>
+<tr class="row-odd"><td>Bcereus_E33L</td>
+<td>Bacillus cereus E33L chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/52140164">http://www.ncbi.nlm.nih.gov/nuccore/52140164</a></td>
+</tr>
+<tr class="row-even"><td>Bcereus_F837_76</td>
+<td>Bacillus cereus F837/76 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/376264031">http://www.ncbi.nlm.nih.gov/nuccore/376264031</a></td>
+</tr>
+<tr class="row-odd"><td>Bcereus_G9842</td>
+<td>Bacillus cereus G9842 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/218895141">http://www.ncbi.nlm.nih.gov/nuccore/218895141</a></td>
+</tr>
+<tr class="row-even"><td>Bcereus_NC7401</td>
+<td>Bacillus cereus NC7401, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/375282101">http://www.ncbi.nlm.nih.gov/nuccore/375282101</a></td>
+</tr>
+<tr class="row-odd"><td>Bcereus_Q1</td>
+<td>Bacillus cereus Q1 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/222093774">http://www.ncbi.nlm.nih.gov/nuccore/222093774</a></td>
+</tr>
+<tr class="row-even"><td>Bthuringiensis_AlHakam</td>
+<td>Bacillus thuringiensis str. Al Hakam chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/118475778">http://www.ncbi.nlm.nih.gov/nuccore/118475778</a></td>
+</tr>
+<tr class="row-odd"><td>Bthuringiensis_BMB171</td>
+<td>Bacillus thuringiensis BMB171 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/296500838">http://www.ncbi.nlm.nih.gov/nuccore/296500838</a></td>
+</tr>
+<tr class="row-even"><td>Bthuringiensis_Bt407</td>
+<td>Bacillus thuringiensis Bt407 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/409187965">http://www.ncbi.nlm.nih.gov/nuccore/409187965</a></td>
+</tr>
+<tr class="row-odd"><td>Bthuringiensis_chinensis_CT43</td>
+<td>Bacillus thuringiensis serovar chinensis CT-43 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/384184088">http://www.ncbi.nlm.nih.gov/nuccore/384184088</a></td>
+</tr>
+<tr class="row-even"><td>Bthuringiensis_finitimus_YBT020</td>
+<td>Bacillus thuringiensis serovar finitimus YBT-020 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/384177910">http://www.ncbi.nlm.nih.gov/nuccore/384177910</a></td>
+</tr>
+<tr class="row-odd"><td>Bthuringiensis_konkukian_9727</td>
+<td>Bacillus thuringiensis serovar konkukian str. 97-27 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/49476684">http://www.ncbi.nlm.nih.gov/nuccore/49476684</a></td>
+</tr>
+<tr class="row-even"><td>Bthuringiensis_MC28</td>
+<td>Bacillus thuringiensis MC28 chromosome, complete genome</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/407703236">http://www.ncbi.nlm.nih.gov/nuccore/407703236</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="ebola-reference-genomes">
+<span id="ebola-ref-list"></span><h2>7.4. Ebola Reference Genomes<a class="headerlink" href="#ebola-reference-genomes" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="65%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Accession</th>
+<th class="head">Description</th>
+<th class="head">URL</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>NC_014372</td>
+<td>Tai Forest ebolavirus isolate Tai Forest virus H.sapiens-tc/CIV/1994/Pauleoula-CI, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/NC_014372">http://www.ncbi.nlm.nih.gov/nuccore/NC_014372</a></td>
+</tr>
+<tr class="row-odd"><td>FJ217162</td>
+<td>Cote d&#8217;Ivoire ebolavirus, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/FJ217162">http://www.ncbi.nlm.nih.gov/nuccore/FJ217162</a></td>
+</tr>
+<tr class="row-even"><td>FJ968794</td>
+<td>Sudan ebolavirus strain Boniface, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/FJ968794">http://www.ncbi.nlm.nih.gov/nuccore/FJ968794</a></td>
+</tr>
+<tr class="row-odd"><td>NC_006432</td>
+<td>Sudan ebolavirus isolate Sudan virus H.sapiens-tc/UGA/2000/Gulu-808892, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/NC_006432">http://www.ncbi.nlm.nih.gov/nuccore/NC_006432</a></td>
+</tr>
+<tr class="row-even"><td>KJ660348</td>
+<td>Zaire ebolavirus isolate H.sapiens-wt/GIN/2014/Gueckedou-C05, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KJ660348">http://www.ncbi.nlm.nih.gov/nuccore/KJ660348</a></td>
+</tr>
+<tr class="row-odd"><td>KJ660347</td>
+<td>Zaire ebolavirus isolate H.sapiens-wt/GIN/2014/Gueckedou-C07, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KJ660347">http://www.ncbi.nlm.nih.gov/nuccore/KJ660347</a></td>
+</tr>
+<tr class="row-even"><td>KJ660346</td>
+<td>Zaire ebolavirus isolate H.sapiens-wt/GIN/2014/Kissidougou-C15, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KJ660346">http://www.ncbi.nlm.nih.gov/nuccore/KJ660346</a></td>
+</tr>
+<tr class="row-odd"><td>JN638998</td>
+<td>Sudan ebolavirus - Nakisamata, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/JN638998">http://www.ncbi.nlm.nih.gov/nuccore/JN638998</a></td>
+</tr>
+<tr class="row-even"><td>AY354458</td>
+<td>Zaire ebolavirus strain Zaire 1995, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/AY354458">http://www.ncbi.nlm.nih.gov/nuccore/AY354458</a></td>
+</tr>
+<tr class="row-odd"><td>AY729654</td>
+<td>Sudan ebolavirus strain Gulu, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/AY729654">http://www.ncbi.nlm.nih.gov/nuccore/AY729654</a></td>
+</tr>
+<tr class="row-even"><td>EU338380</td>
+<td>Sudan ebolavirus isolate EBOV-S-2004 from Sudan, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/EU338380">http://www.ncbi.nlm.nih.gov/nuccore/EU338380</a></td>
+</tr>
+<tr class="row-odd"><td>KM655246</td>
+<td>Zaire ebolavirus isolate H.sapiens-tc/COD/1976/Yambuku-Ecran, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KM655246">http://www.ncbi.nlm.nih.gov/nuccore/KM655246</a></td>
+</tr>
+<tr class="row-even"><td>KC242801</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/COD/1976/deRoover, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242801">http://www.ncbi.nlm.nih.gov/nuccore/KC242801</a></td>
+</tr>
+<tr class="row-odd"><td>KC242800</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/GAB/2002/Ilembe, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242800">http://www.ncbi.nlm.nih.gov/nuccore/KC242800</a></td>
+</tr>
+<tr class="row-even"><td>KC242799</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/COD/1995/13709 Kikwit, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242799">http://www.ncbi.nlm.nih.gov/nuccore/KC242799</a></td>
+</tr>
+<tr class="row-odd"><td>KC242798</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/GAB/1996/1Ikot, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242798">http://www.ncbi.nlm.nih.gov/nuccore/KC242798</a></td>
+</tr>
+<tr class="row-even"><td>KC242797</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/GAB/1996/1Oba, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242797">http://www.ncbi.nlm.nih.gov/nuccore/KC242797</a></td>
+</tr>
+<tr class="row-odd"><td>KC242796</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/COD/1995/13625 Kikwit, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242796">http://www.ncbi.nlm.nih.gov/nuccore/KC242796</a></td>
+</tr>
+<tr class="row-even"><td>KC242795</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/GAB/1996/1Mbie, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242795">http://www.ncbi.nlm.nih.gov/nuccore/KC242795</a></td>
+</tr>
+<tr class="row-odd"><td>KC242794</td>
+<td>Zaire ebolavirus isolate EBOV/H.sapiens-tc/GAB/1996/2Nza, complete genome.</td>
+<td><a class="reference external" href="http://www.ncbi.nlm.nih.gov/nuccore/KC242794">http://www.ncbi.nlm.nih.gov/nuccore/KC242794</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">7. Databases</a><ul>
+<li><a class="reference internal" href="#edge-provided-database">7.1. EDGE provided database</a><ul>
+<li><a class="reference internal" href="#mvirdb">7.1.1. MvirDB</a></li>
+<li><a class="reference internal" href="#ncbi-refseq">7.1.2. NCBI Refseq</a></li>
+<li><a class="reference internal" href="#krona-taxonomy">7.1.3. Krona taxonomy</a><ul>
+<li><a class="reference internal" href="#update-krona-taxonomy-db">7.1.3.1. Update Krona taxonomy db</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#metaphlan-database">7.1.4. Metaphlan database</a></li>
+<li><a class="reference internal" href="#human-genome">7.1.5. Human Genome</a></li>
+<li><a class="reference internal" href="#minikraken-db">7.1.6. MiniKraken DB</a></li>
+<li><a class="reference internal" href="#gottcha-db">7.1.7. GOTTCHA DB</a></li>
+<li><a class="reference internal" href="#snpdb">7.1.8. SNPdb</a></li>
+<li><a class="reference internal" href="#invertebrate-vectors-of-human-pathogens">7.1.9. Invertebrate Vectors of Human Pathogens</a></li>
+<li><a class="reference internal" href="#other-optional-database">7.1.10. Other optional database</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#build-bwa-index">7.2. Build bwa index</a></li>
+<li><a class="reference internal" href="#snp-database-genomes">7.3. SNP database genomes</a><ul>
+<li><a class="reference internal" href="#ecoli-genomes">7.3.1. Ecoli Genomes</a></li>
+<li><a class="reference internal" href="#yersinia-genomes">7.3.2. Yersinia Genomes</a></li>
+<li><a class="reference internal" href="#francisella-genomes">7.3.3. Francisella Genomes</a></li>
+<li><a class="reference internal" href="#brucella-genomes">7.3.4. Brucella Genomes</a></li>
+<li><a class="reference internal" href="#bacillus-genomes">7.3.5. Bacillus Genomes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ebola-reference-genomes">7.4. Ebola Reference Genomes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="output.html"
+                        title="previous chapter">6. Output</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="third_party.html"
+                        title="next chapter">8. Third Party Tools</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/database.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="third_party.html" title="8. Third Party Tools"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="output.html" title="6. Output"
+             >previous</a> |</li>
+        <li><a href="index.html">EDGE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; <a href="copyright.html">Copyright</a> 2014, EDGE development team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
