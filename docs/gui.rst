@@ -197,7 +197,7 @@ The Annotation module will be performed only if the assembly option is turned on
 .. image:: img/annotation.png
    :align: center
 
-The binning program in EDGE is `MaxBin2 <https://academic.oup.com/bioinformatics/article/32/4/605/1744462 >`_. MaxBin2 is a tool designed for metagenomic binning, where it clusters assembled contigs from metagenomes into genome bins based on sequence composition and abundance information. 
+The binning program in EDGE is `MaxBin2 <https://academic.oup.com/bioinformatics/article/32/4/605/1744462>`_. MaxBin2 is a tool designed for metagenomic binning, where it clusters assembled contigs from metagenomes into genome bins based on sequence composition and abundance information. 
 
 EM Algorithm Iteration: It limits how many times MaxBin2 runs the EM refinement process. 50 is a balance between performance and quality of binning. Users can change it if you think your data needs more or fewer iterations to reach a good convergence (e.g., if you're using very complex or very simple datasets).
  
